@@ -1,12 +1,13 @@
-
-import java.util.*;
+import javax.swing.*;
+import java.awt.event.WindowEvent;
+import java.awt.event.WindowListener;
 
 
 /**
  * Class SimpleFrame
  * @author LucasMongrain, 23 fevrier 2016
  */
-public class SimpleFrame  extends JFrame{
+public class SimpleFrame  extends JFrame implements WindowListener{
 
     //
     // Fields
@@ -21,7 +22,7 @@ public class SimpleFrame  extends JFrame{
 		{
 				UIManager.setLookAndFeel("javax.swing.plaf.nimbus.NimbusLookAndFeel");
 				this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-				this.setvisible(true);
+				this.setVisible(true);
 				this.setResizable(true);
 		}
 	 	catch(Exception e)
@@ -34,15 +35,14 @@ public class SimpleFrame  extends JFrame{
     // Methods
     //
 
-
-	@override
+	@Override
 	public void windowClosing(WindowEvent event)
 	{
 		try
 		{
 			int signal = JOptionPane.showConfirmDialog(null, "etes-vous sur de vouloir quitter, les parametres non sauvegarder serons effacer", "JavaOverflow", JOptionPane.WARNING_MESSAGE,JOptionPane.OK_CANCEL_OPTION );
 		
-			if(rep == JOptionPane.OK_OPTION)
+			if(signal == JOptionPane.OK_OPTION)
 			{
 				System.exit(0);
 			}
@@ -73,4 +73,27 @@ public class SimpleFrame  extends JFrame{
     // Other methods
     //
 
+    public void windowActivated(WindowEvent event){
+
+    }
+
+    public void windowClosed(WindowEvent event){
+
+    }
+
+    public void windowDeiconified(WindowEvent event){
+
+    }
+
+    public void windowIconified(WindowEvent event){
+
+    }
+
+    public void windowOpened(WindowEvent event){
+
+    }
+
+    public void windowDeactivated(WindowEvent event){
+
+    }
 }

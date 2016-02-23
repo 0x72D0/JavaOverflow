@@ -1,4 +1,4 @@
-
+import java.util.ArrayList;
 
 /**
  * Class JavaOverflow
@@ -9,7 +9,7 @@ public class JavaOverflow {
     // Fields
     //
 
-    private ArrayLists<Question> database;
+    private ArrayList<Question> database;
     
     //
     // Constructors
@@ -29,7 +29,7 @@ public class JavaOverflow {
      * Set the value of database
      * @param newVar the new value of database
      */
-    private void setDatabase (ArrayLists<Question> newVar) {
+    private void setDatabase (ArrayList<Question> newVar) {
         database = newVar;
     }
 
@@ -37,7 +37,7 @@ public class JavaOverflow {
      * Get the value of database
      * @return the value of database
      */
-    private ArrayLists<Question> getDatabase () {
+    private ArrayList<Question> getDatabase () {
         return database;
     }
 
