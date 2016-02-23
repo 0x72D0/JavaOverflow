@@ -47,8 +47,9 @@ public class JavaOverflow {
 
     /**
      */
-    public static void main()
+    public static void main(String[]args)
     {
+        new MainMenu();
     }
 
 

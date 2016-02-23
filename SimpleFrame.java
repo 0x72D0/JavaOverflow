@@ -18,9 +18,11 @@ public class SimpleFrame  extends JFrame implements WindowListener{
     // Constructors
     //
     public SimpleFrame () {
+        super("JavaOverflow");
 	    try
 		{
 				UIManager.setLookAndFeel("javax.swing.plaf.nimbus.NimbusLookAndFeel");
+                panel = new JPanel();
 				this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 				this.setVisible(true);
 				this.setResizable(true);

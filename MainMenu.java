@@ -31,10 +31,10 @@ public class MainMenu extends SimpleFrame implements ActionListener{
         quitter = new JButton("quitter");
         quitter.setForeground(Color.red);
         quitter.addActionListener(this);
-        this.getPanel().add(commencer);
-        this.getPanel().add(options);
-        this.getPanel().add(quitter);
-        this.add(this.getPanel());
+        getPanel().add(commencer);
+        getPanel().add(options);
+        getPanel().add(quitter);
+        this.add(getPanel());
     }
     
     //
