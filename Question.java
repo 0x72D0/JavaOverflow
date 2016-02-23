@@ -1,4 +1,4 @@
-
+import java.util.ArrayList;
 
 /**
  * Class Question
@@ -9,7 +9,7 @@ public class Question {
     // Fields
     //
 
-    private ArraLists<String> reponse;
+    private ArrayList<String> reponse;
     private String enonce;
     
     //
@@ -30,7 +30,7 @@ public class Question {
      * Set the value of reponse
      * @param newVar the new value of reponse
      */
-    private void setReponse (ArraLists<String> newVar) {
+    private void setReponse (ArrayList<String> newVar) {
         reponse = newVar;
     }
 
@@ -38,7 +38,7 @@ public class Question {
      * Get the value of reponse
      * @return the value of reponse
      */
-    private ArraLists<String> getReponse () {
+    private ArrayList<String> getReponse () {
         return reponse;
     }
 
