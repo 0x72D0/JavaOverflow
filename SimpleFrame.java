@@ -23,9 +23,7 @@ public class SimpleFrame  extends JFrame implements WindowListener{
 		{
 				UIManager.setLookAndFeel("javax.swing.plaf.nimbus.NimbusLookAndFeel");
                 panel = new JPanel();
-				this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-				this.setVisible(true);
-				this.setResizable(true);
+
 		}
 	 	catch(Exception e)
 	 	{

@@ -35,6 +35,12 @@ public class MainMenu extends SimpleFrame implements ActionListener{
         getPanel().add(options);
         getPanel().add(quitter);
         this.add(getPanel());
+        this.setSize(700,250);
+        this.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
+        this.setResizable(true);
+        this.setLocationRelativeTo(null);
+        this.setVisible(true);
+
     }
     
     //
@@ -57,7 +63,8 @@ public class MainMenu extends SimpleFrame implements ActionListener{
     public void actionPerformed(ActionEvent event){
 
         if (event.getSource()==commencer){
-            //To complete
+            this.dispose();
+            new gameScreen();
         }
 
         if(event.getSource()==options){
