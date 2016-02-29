@@ -17,7 +17,6 @@ public class gameScreen extends SimpleFrame{
     JLabel reponseLabel;
     JTextField reponse;
     JScrollPane scroll;
-    JPanel panel2;
 
     
     //
@@ -25,7 +24,6 @@ public class gameScreen extends SimpleFrame{
     //
     public gameScreen () {
         super();
-        panel2 = new JPanel();
         questionArea = new JTextArea ();
         questionArea.setEditable(false);
         scroll = new JScrollPane (questionArea);
@@ -47,9 +45,6 @@ public class gameScreen extends SimpleFrame{
     // Methods
     //
 
-    public JPanel getPanel2() {
-        return panel2;
-    }
 
 
     //

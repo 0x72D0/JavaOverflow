@@ -23,6 +23,7 @@ public class SimpleFrame  extends JFrame implements WindowListener{
 		{
 				UIManager.setLookAndFeel("javax.swing.plaf.nimbus.NimbusLookAndFeel");
                 panel = new JPanel();
+				this.addWindowListener(this);
 
 		}
 	 	catch(Exception e)
