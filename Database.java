@@ -2,14 +2,8 @@
  * @author: Duy, 2016/02/16
  */
 //Modifications par Gio 2016/03/5
-import java.io.BufferedInputStream;
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.io.IOException;
-import java.io.InputStream;
-import java.util.ArrayList;
-import java.util.Scanner;
+import java.io.*;
+import java.util.*;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 
@@ -23,8 +17,6 @@ public class Database {
 	public static  void createData() throws IOException{
 			String q = null;
 			String a = null;
-			
-			ArrayList<File> fichiers = new ArrayList<File>();
 			
 			//Cree le chemin des fichiers questions
 			Path currentRelativePath = Paths.get(""); 
@@ -40,11 +32,9 @@ public class Database {
 				
 				if(listeChemins[i].isFile()){
 					
-					fichiers.add(listeChemins[i]);
-					
 					try {
 						
-						BufferedReader read = new BufferedReader(fichiers.get(i));
+						BufferedReader read = new BufferedReader(new FileReader(listeChemins[i]));
 						StringBuffer buffer = new StringBuffer();
 						String line = null;
 						
@@ -56,7 +46,7 @@ public class Database {
 						}
 
 						//parse the string and put the Question Object created inside the array
-						questions.add(parse(buffer));
+						questions.add(parse(buffer.toString()));
 
 						
 					} catch (FileNotFoundException e) {
@@ -116,16 +106,16 @@ public class Database {
 	}
 	
 	//parse the string
-	public Question parse(String buffer) throws Exception
+	public static Question parse(String buffer)
 	{
-		string[] splitString = buffer.split("~");
+		String[] splitString = buffer.split("~");
 
 		//split all the answer
-		ArrayList<String> answer = new ArrayList<String>(Array.asList(splintString[3].split("$")));
+		ArrayList<String> answer = new ArrayList<String>(Arrays.asList(splitString[3].split("$")));
 		
 		//create the Question object
 		Question question = new Question(splitString[1], answer);
-		return question
+		return question;
 	}
 	
 }
