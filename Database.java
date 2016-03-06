@@ -30,11 +30,10 @@ public class Database {
 			Path currentRelativePath = Paths.get(""); 
 			File dir = new File(currentRelativePath.toAbsolutePath().toString()+File.separator+"Questions");
 			System.out.println(currentRelativePath.toAbsolutePath().toString()+File.separator+"Questions");
-			//Cree un array de tout les fichiers trouves
-		
-				
-				File[] listeChemins = dir.listFiles();
-				System.out.println(listeChemins.length);
+
+			//Cree un array de tout les fichiers trouves	
+			File[] listeChemins = dir.listFiles();
+			System.out.println(listeChemins.length);
 		
 			
 			for (int i = 0; i < listeChemins.length; i++){
@@ -45,22 +44,19 @@ public class Database {
 					
 					try {
 						
-						Scanner s = new Scanner(fichiers.get(i));
-						int lineCount = getFileLineCount(listeChemins[i].toString());
-						ArrayList<String>answers=new ArrayList<String>();
+						BufferedReader read = new BufferedReader(fichiers.get(i));
+						StringBuffer buffer = new StringBuffer();
+						String line = null;
 						
-						q=s.nextLine();
-						
-						for(int j=0;j<lineCount-1;j++)
+						// put the entire file inside a string
+						while((line = read.readLine()) != null)
 						{
-							a=s.nextLine();
-							answers.add(a);
-							System.out.println("anwser: "+a);
-							
+							buffer.append(line);
+							buffer.append("\n");
 						}
 
-						Question newQuestion = new Question(q,answers);
-						questions.add(newQuestion);
+						//parse the string and put the Question Object created inside the array
+						questions.add(parse(buffer));
 
 						
 					} catch (FileNotFoundException e) {
@@ -94,7 +90,7 @@ public class Database {
 	
 	//prendre la reponses entree
 	public static Object comparerA(String a, int q){
-		if(a == questions.get(q).getAnswerX(q)){
+		if(a.equals(questions.get(q).getAnswerX(q))){
 			return "Good job. KFC for you";
 		}else{
 			return "Sorry, no KFC for you";
@@ -119,28 +115,17 @@ public class Database {
 		this.questions = questions;
 	}
 	
-	//Permet de trouver le nombre de ligne d'un fichier
-	public static int getFileLineCount(String filename) throws IOException {
-	    InputStream is = new BufferedInputStream(new FileInputStream(filename));
-	    try {
-	        byte[] c = new byte[1024];
-	        int count = 0;
-	        int readChars = 0;
-	        boolean endsWithoutNewLine = false;
-	        while ((readChars = is.read(c)) != -1) {
-	            for (int i = 0; i < readChars; ++i) {
-	                if (c[i] == '\n')
-	                    ++count;
-	            }
-	            endsWithoutNewLine = (c[readChars - 1] != '\n');
-	        }
-	        if(endsWithoutNewLine) {
-	            ++count;
-	        } 
-	        return count;
-	    } finally {
-	        is.close();
-	    }
+	//parse the string
+	public Question parse(String buffer) throws Exception
+	{
+		string[] splitString = buffer.split("~");
+
+		//split all the answer
+		ArrayList<String> answer = new ArrayList<String>(Array.asList(splintString[3].split("$")));
+		
+		//create the Question object
+		Question question = new Question(splitString[1], answer);
+		return question
 	}
 	
 }
