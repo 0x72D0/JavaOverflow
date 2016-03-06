@@ -1,3 +1,9 @@
+/*Giovanni E. Desroches
+ * Description: Classes representants une question, les questions seront entreposer dans
+ * la classe database.
+ * 
+ */
+
 import java.util.ArrayList;
 
 /**
@@ -5,61 +11,41 @@ import java.util.ArrayList;
  */
 public class Question {
 
-    //
-    // Fields
-    //
-
-    private ArrayList<String> reponse;
+    // Attributs
+    private ArrayList<String> reponses;
     private String enonce;
+
+    // Constructeurs
+    public Question(String unEnonce, ArrayList<String>desReponses){ 
+    	
+    	this.enonce = unEnonce;
+    	this.reponses = desReponses;
+    	
+    }
     
-    //
-    // Constructors
-    //
-    public Question () { };
-    
-    //
-    // Methods
-    //
+    //gets & sets
+	public ArrayList<String> getReponses() {
+		return reponses;
+	}
 
+	public void setReponses(ArrayList<String> reponses) {
+		this.reponses = reponses;
+	}
 
-    //
-    // Accessor methods
-    //
+	public String getEnonce() {
+		return enonce;
+	}
 
-    /**
-     * Set the value of reponse
-     * @param newVar the new value of reponse
-     */
-    private void setReponse (ArrayList<String> newVar) {
-        reponse = newVar;
-    }
-
-    /**
-     * Get the value of reponse
-     * @return the value of reponse
-     */
-    private ArrayList<String> getReponse () {
-        return reponse;
-    }
-
-    /**
-     * Set the value of enonce
-     * @param newVar the new value of enonce
-     */
-    private void setEnonce (String newVar) {
-        enonce = newVar;
-    }
-
-    /**
-     * Get the value of enonce
-     * @return the value of enonce
-     */
-    private String getEnonce () {
-        return enonce;
-    }
-
-    //
-    // Other methods
-    //
-
+	public void setEnonce(String enonce) {
+		this.enonce = enonce;
+	}
+	
+	//Methodes
+	public String getAnswerX(int pos){
+		return reponses.get(pos);
+	}
 }
+    
+    
+    
+    
