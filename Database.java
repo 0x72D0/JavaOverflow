@@ -1,5 +1,5 @@
 /**
- * @author: Duy, 2016/02/16
+	 * @author: Duy, 2016/02/16
  */
 //Modifications par Gio 2016/03/5
 import java.io.*;
@@ -9,12 +9,11 @@ import java.nio.file.Paths;
 
 public class Database {
 
-	static ArrayList<Question> questions = new ArrayList<Question>();
-	int numeroQ;
+	private ArrayList<Question> questions = new ArrayList<Question>();
 	
 	//Create database
 	
-	public static  void createData() throws IOException{
+	public Database(){
 			String q = null;
 			String a = null;
 			
@@ -49,11 +48,21 @@ public class Database {
 						questions.add(parse(buffer.toString()));
 
 						
-					} catch (FileNotFoundException e) {
+					}
+					catch (FileNotFoundException e) 
+					{
 						// TODO Auto-generated catch block
+						System.out.println("File not found exception when create the database\n\n");
 						e.printStackTrace();
 					}
-				}else if (listeChemins[i].isDirectory()) {
+					catch(IOException e)
+					{
+						System.out.println("IO exception when create the database\n\n");
+						e.printStackTrace();
+					}
+				}
+				else if (listeChemins[i].isDirectory()) 
+				{
 			        //System.out.println("Directory " + list[i].getName());
 				}
 			}
@@ -61,43 +70,8 @@ public class Database {
 
 	}
 	
-	/*public static void main(String args[]) throws IOException
-	{
-		createData();
-		
-	}*/
-	
-	//prendre question et poser
-	public static String prendreQ (int q){
-		return questions.get(q).getEnonce();
-	}
-	//prendre reponse et montrer
-	public static Object prendreA (int q){
-		return questions.get(q).getAnswerX(q);
-	}
-	
-	//montrer feedback
-	
-	//prendre la reponses entree
-	public static Object comparerA(String a, int q){
-		if(a.equals(questions.get(q).getAnswerX(q))){
-			return "Good job. KFC for you";
-		}else{
-			return "Sorry, no KFC for you";
-		}
-	}
-	//Duy fixe cette methode stp
-	/*public static String getSolutionnaire() {
-		String solutionnaire ="";
-		for(int i = 0 ; i<questions.size();i++){
-			solutionnaire += "Question "+(i+1)+" :"+questions.get(i).getQuestion()+" "+"Reponse "+(i+1)+" :"+questions.get(i).getAnswer()+"\n";
-		}
-		return solutionnaire;
-	}*/
-	
-	
 	//getters&setters
-	public static ArrayList<Question> getQuestions() {
+	public ArrayList<Question> getQuestions() {
 		return questions;
 	}
 
@@ -106,7 +80,7 @@ public class Database {
 	}
 	
 	//parse the string
-	public static Question parse(String buffer)
+	public Question parse(String buffer)
 	{
 		String[] splitString = buffer.split("~");
 

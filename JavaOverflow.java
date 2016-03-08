@@ -1,4 +1,4 @@
-import java.util.ArrayList;
+import java.util.*;
 
 /**
  * Class JavaOverflow
@@ -9,7 +9,7 @@ public class JavaOverflow {
     // Fields
     //
 
-    private ArrayList<Question> database;
+    public static Database database;
     
     //
     // Constructors
@@ -20,26 +20,18 @@ public class JavaOverflow {
     // Methods
     //
 
+	public static Question generateQuestion()
+	{
+		Random rand = new Random();
+		int i = rand.nextInt(database.getQuestions().size()-1);
+		return database.getQuestions().get(i);
+	}
+
 
     //
     // Accessor methods
     //
-
-    /**
-     * Set the value of database
-     * @param newVar the new value of database
-     */
-    private void setDatabase (ArrayList<Question> newVar) {
-        database = newVar;
-    }
-
-    /**
-     * Get the value of database
-     * @return the value of database
-     */
-    private ArrayList<Question> getDatabase () {
-        return database;
-    }
+  
 
     //
     // Other methods
@@ -49,6 +41,7 @@ public class JavaOverflow {
      */
     public static void main(String[]args)
     {
+		database = new Database();
         new MainMenu();
     }
 
