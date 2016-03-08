@@ -1,4 +1,6 @@
 /**
+ * Cette classe crée un database dans un ArrayList pour poser les questions et prendre les réponses
+ * 
 	 * @author: Duy, 2016/02/16
  */
 //Modifications par Gio 2016/03/5
@@ -11,8 +13,12 @@ public class Database {
 
 	private ArrayList<Question> questions = new ArrayList<Question>();
 	
-	//Create database
-	
+	/**
+	 *Constructeur qui crée le chemin pour les fichiers à lire (questions et réponses),
+	 * qui sépare et différencie les questions et réponses
+	 * @throws Exception dans le cas où on ne trouve pas de fichier
+	 * @throws Exception dans le cas où il y a un problème quelconque avec les fichiers
+	 */
 	public Database(){
 			String q = null;
 			String a = null;
@@ -71,15 +77,28 @@ public class Database {
 	}
 	
 	//getters&setters
+	/**
+	 *méthode pour retourner le ArrayList contenant les questions et ses réponses
+	 * @return retourne le ArrayList (database)
+	 */
 	public ArrayList<Question> getQuestions() {
 		return questions;
 	}
-
+	/**
+	 *méthode pour réécrire le database
+	 * @param questions
+	 * 	ArrayList contenant tout le database (textes de tous les fichiers)
+	 */
 	public void setQuestions(ArrayList<Question> questions) {
 		this.questions = questions;
 	}
 	
 	//parse the string
+	/**
+	 * méthode pour séparer les questions des réponses.
+	 * @param buffer
+	 * 	String recevant le lecture du fichier
+	 */
 	public Question parse(String buffer)
 	{
 		String[] splitString = buffer.split("~");
