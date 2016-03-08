@@ -19,6 +19,11 @@ public class MainMenu extends SimpleFrame implements ActionListener{
     //
     // Constructors
     //
+
+    /**
+     *
+     * Constructeur
+     */
     public MainMenu () {
 
         super();
@@ -56,8 +61,9 @@ public class MainMenu extends SimpleFrame implements ActionListener{
     //
 
     /**
+     * methode pour faire agir les boutons
      * Override actionPerformed from interface ActionListener
-     * @param event
+     * @param event Actionevent object created from the buttons
      */
     @Override
     public void actionPerformed(ActionEvent event){
@@ -68,7 +74,7 @@ public class MainMenu extends SimpleFrame implements ActionListener{
         }
 
         if(event.getSource()==options){
-            //Same
+            JOptionPane.showMessageDialog(null,"fonctionnalite a venir");
         }
 
         if(event.getSource()==quitter){

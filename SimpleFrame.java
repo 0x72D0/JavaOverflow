@@ -17,6 +17,11 @@ public class SimpleFrame  extends JFrame implements WindowListener{
     //
     // Constructors
     //
+
+    /**
+     *
+     * Constructeur de la classe
+     */
     public SimpleFrame () {
         super("JavaOverflow");
 	    try
@@ -36,6 +41,11 @@ public class SimpleFrame  extends JFrame implements WindowListener{
     // Methods
     //
 
+	/**
+	 * methode pour avertir l'utilisateur que les données ne seront pas sauvegardées
+     * Override windowClosing from interface windowListener
+	 * @param event the WindowEvent Object created when the windows closes
+     */
 	@Override
 	public void windowClosing(WindowEvent event)
 	{
