@@ -97,7 +97,7 @@ public class Database {
 	/**
 	 * méthode pour séparer les questions des réponses.
 	 * @param buffer
-	 * 	String recevant la partie de texte pour soit la question ou la réponse
+	 * 	String recevant le lecture du fichier
 	 */
 	public Question parse(String buffer)
 	{
