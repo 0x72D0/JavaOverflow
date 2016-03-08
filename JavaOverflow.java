@@ -27,7 +27,7 @@ public class JavaOverflow {
  * Initialise la base de donne en chargeant les fichiers questions. 
  * @param void
  * @return void
- * /
+ */
 	public static void generateQuestion()
 	{
 		Random rand = new Random();
@@ -39,7 +39,7 @@ public class JavaOverflow {
  * de la question actuelle.
  * @param Une reponse  de l'utilisateur
  * @return Vrai si la reponse est vrai, faut dans le cas contraire.
- * /
+ */
 	public static boolean verifyStringAnswer(String rep)
 	{
 		for(String ans: cwq.getReponses())
@@ -49,7 +49,7 @@ public class JavaOverflow {
 				return true;
 			}
 		}
-		
+
 		return false;
 	}
 
@@ -63,8 +63,6 @@ public class JavaOverflow {
     // Other methods
     //
 
-    /**
-     */
     public static void main(String[]args)
     {
 		database = new Database();
