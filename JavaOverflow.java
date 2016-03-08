@@ -10,6 +10,7 @@ public class JavaOverflow {
     //
 
     public static Database database;
+	public static Question cwq; // cwq : current working question
     
     //
     // Constructors
@@ -20,11 +21,24 @@ public class JavaOverflow {
     // Methods
     //
 
-	public static Question generateQuestion()
+	public static void generateQuestion()
 	{
 		Random rand = new Random();
 		int i = rand.nextInt(database.getQuestions().size()-1);
-		return database.getQuestions().get(i);
+		cwq = database.getQuestions().get(i);
+	}
+
+	public static boolean verifyStringAnswer(String rep)
+	{
+		for(String ans: cwq.getReponses())
+		{
+			if(rep.equals(ans))
+			{
+				return true;
+			}
+		}
+		
+		return false;
 	}
 
 

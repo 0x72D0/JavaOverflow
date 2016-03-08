@@ -1,5 +1,7 @@
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 /**
  * Class gameScreen
@@ -8,7 +10,7 @@ import java.awt.*;
  * 26/02/2016
  * @author Raphaël Bouchard
  */
-public class gameScreen extends SimpleFrame{
+public class gameScreen extends SimpleFrame implements ActionListener{
 
     //
     // Fields
@@ -22,7 +24,8 @@ public class gameScreen extends SimpleFrame{
     //
     // Constructors
     //
-    public gameScreen () {
+    public gameScreen () 
+	{
         super();
         questionArea = new JTextArea ();
         questionArea.setEditable(false);
@@ -39,13 +42,14 @@ public class gameScreen extends SimpleFrame{
         this.setLocationRelativeTo(null);
         this.setSize(270,300);
         this.setVisible(true);
+        
+		JavaOverflow.generateQuestion();
+		questionArea.setText(JavaOverflow.cwq.getEnonce());
     }
     
     //
     // Methods
     //
-
-
 
     //
     // Accessor methods
@@ -54,5 +58,11 @@ public class gameScreen extends SimpleFrame{
     //
     // Other methods
     //
+
+	@Override
+	public void actionPerformed(ActionEvent event)
+	{
+
+	}
 
 }
