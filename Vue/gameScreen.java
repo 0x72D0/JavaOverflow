@@ -1,3 +1,7 @@
+package Vue;
+
+import Controlleur.JavaOverflow;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;

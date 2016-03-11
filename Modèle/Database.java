@@ -1,4 +1,4 @@
-/**
+package Modèle; /**
  * Cette classe crée un database dans un ArrayList pour poser les questions et prendre les réponses
  * 
  * @author: Duy, 2016/02/16
@@ -25,8 +25,8 @@ public class Database {
 			
 			//Cree le chemin des fichiers questions
 			Path currentRelativePath = Paths.get(""); 
-			File dir = new File(currentRelativePath.toAbsolutePath().toString()+File.separator+"Questions");
-			System.out.println(currentRelativePath.toAbsolutePath().toString()+File.separator+"Questions");
+			File dir = new File(currentRelativePath.toAbsolutePath().toString()+File.separator+ "Questions");
+			System.out.println(currentRelativePath.toAbsolutePath().toString()+File.separator+ "Questions");
 
 			//Cree un array de tout les fichiers trouves	
 			File[] listeChemins = dir.listFiles();

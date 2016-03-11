@@ -1,3 +1,7 @@
+package Controlleur;
+
+import Modèle.*;
+import Vue.*;
 import java.util.*;
 
 /**
@@ -25,7 +29,6 @@ public class JavaOverflow {
     //
 /**
  * Initialise la base de donne en chargeant les fichiers questions. 
- * @param void
  * @return void
  */
 	public static void generateQuestion()
@@ -37,7 +40,7 @@ public class JavaOverflow {
 /**
  * Verifie une reponse entre en parametre en la comparant avec les reponses
  * de la question actuelle.
- * @param Une reponse  de l'utilisateur
+ * @param rep Une reponse  de l'utilisateur
  * @return Vrai si la reponse est vrai, faut dans le cas contraire.
  */
 	public static boolean verifyStringAnswer(String rep)

@@ -1,4 +1,4 @@
-/*Giovanni E. Desroches
+package Modèle;/*Giovanni E. Desroches
  * Description: Classes representants une question, les questions seront entreposer dans
  * la classe database.
  */
