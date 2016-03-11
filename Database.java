@@ -1,7 +1,7 @@
 /**
  * Cette classe crée un database dans un ArrayList pour poser les questions et prendre les réponses
  * 
-	 * @author: Duy, 2016/02/16
+ * @author: Duy, 2016/02/16
  */
 //Modifications par Gio 2016/03/5
 import java.io.*;

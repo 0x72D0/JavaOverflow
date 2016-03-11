@@ -1,7 +1,6 @@
 /*Giovanni E. Desroches
  * Description: Classes representants une question, les questions seront entreposer dans
  * la classe database.
- 	* @author: Duy, 2016/02/16
  */
 
 import java.util.ArrayList;
@@ -9,6 +8,7 @@ import java.util.ArrayList;
 /**
  * Class Question
  * classe qui intialise les objets questions avec ses attributs, questions et réponses, avec les accesseurs et les mutateurs
+ * @author: Duy, 2016/02/16
  */
 public class Question {
 
