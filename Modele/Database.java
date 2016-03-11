@@ -1,4 +1,4 @@
-package Modèle; /**
+package Modele; /**
  * Cette classe crée un database dans un ArrayList pour poser les questions et prendre les réponses
  * 
  * @author: Duy, 2016/02/16

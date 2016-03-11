@@ -1,6 +1,6 @@
 package Controlleur;
 
-import Modèle.*;
+import Modele.*;
 import Vue.*;
 import java.util.*;
 
