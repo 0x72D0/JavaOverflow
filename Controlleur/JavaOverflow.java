@@ -7,7 +7,7 @@ import java.util.*;
 /**
  * Class JavaOverflow
  * classe principale initialisant le GUI ainsi que la base de donnee.
- * @author Lucas
+ * @author Lucas 23 fevrier 2016
  */
 public class JavaOverflow {
 
