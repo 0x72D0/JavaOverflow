@@ -69,7 +69,7 @@ public class Database {
                         System.out.println("IO exception when create the database\n\n");
                         e.printStackTrace();
                     }
-                    catch( ArrayIndexOutOfBoundsException E)
+                    catch(ArrayIndexOutOfBoundsException E)
                     {
                     JOptionPane.showMessageDialog(null,"Des erreurs de fichiers sont apparues en essayant de créer la base de données.");
                     System.exit(1);
@@ -100,8 +100,23 @@ public class Database {
 	public void setQuestions(ArrayList<Question> questions) {
 		this.questions = questions;
 	}
-	
-	//parse the string
+
+    /**
+     * la categorie actuelle
+     * @return category
+     */
+    public ArrayList<String> getCategory() {
+        return category;
+    }
+
+    /**
+     * methode pour modifier la categorie de question
+     * @param category the new category
+     */
+    public void setCategory(ArrayList<String> category) {
+        this.category = category;
+    }
+    //parse the string
 	/**
 	 * méthode pour séparer les questions des réponses.
      * @param buffer
@@ -144,8 +159,6 @@ public class Database {
             Question question = new Question(splitString[1], answer, catbuf, dif, splitString[9], splitString[11]);
 
             return question;
-
-
 
     }
 	
