@@ -12,7 +12,7 @@ import java.nio.file.Paths;
 public class Database {
 
 	private ArrayList<Question> questions = new ArrayList<Question>();
-	private ArrayList<String> category = new ArrayList<String>()
+	private ArrayList<String> category = new ArrayList<String>();
 	
 	/**
 	 *Constructeur qui crée le chemin pour les fichiers à lire (questions et réponses),
@@ -127,7 +127,7 @@ public class Database {
 			c++;
 		}
 		
-		if(c == category.length)
+		if(c == category.size())
 		{
 			category.add(catbuf);
 		}
