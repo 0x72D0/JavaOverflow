@@ -10,6 +10,7 @@ import java.nio.file.Paths;
 public class Database {
 
 	private ArrayList<Question> questions = new ArrayList<Question>();
+	private ArrayList<String> category = new ArrayList<String>()
 	
 	//Create database
 	
@@ -87,8 +88,34 @@ public class Database {
 		//split all the answer
 		ArrayList<String> answer = new ArrayList<String>(Arrays.asList(splitString[3].split("$")));
 		
+		//initialize the difficulty
+		short dif = Short.parseShort(splitString[7]);
+		
+		if(dif < 0)
+			dif = 0;
+		
+		if(dif > 100)
+			dif = 100;
+		
+		//initialize the category(to optimize)
+		String catbuf = splitString[5];
+		int c = 1;
+		
+		for(String s:category)
+		{
+			if(s.equals(catbuf))
+				break;
+			c++;
+		}
+		
+		if(c == category.length)
+		{
+			category.add(catbuf);
+		}
+		
 		//create the Question object
-		Question question = new Question(splitString[1], answer);
+		Question question = new Question(splitString[1], answer, catbuf, dif, splitString[9], splitString[11]);
+		
 		return question;
 	}
 	
