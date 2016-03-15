@@ -14,17 +14,20 @@ public class Question {
 
     // Attributs
     private ArrayList<String> reponses;
-    private String enonce;
-
+    private String enonce,bonFeedBack,mauvaisFeedBack,category;
+    short difficulty;
     // Constructeurs
     /**
      *Constructeur qui initialise chaque objet question et permet d'identifier les énoncés et les réponses
      */
-    public Question(String unEnonce, ArrayList<String>desReponses){ 
+    public Question(String unEnonce, ArrayList<String>desReponses,String category,short difficulty,String bonFeedBack,String mauvaisFeedBack){
     	
     	this.enonce = unEnonce;
     	this.reponses = desReponses;
-    	
+        this.category = category;
+        this.difficulty = difficulty;
+        this.bonFeedBack = bonFeedBack;
+        this.mauvaisFeedBack = mauvaisFeedBack;
     }
     
     //gets & sets
