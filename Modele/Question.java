@@ -14,17 +14,20 @@ public class Question {
 
     // Attributs
     private ArrayList<String> reponses;
-    private String enonce;
-
+    private String enonce,bonFeedBack,mauvaisFeedBack,category;
+    short difficulty;
     // Constructeurs
     /**
      *Constructeur qui initialise chaque objet question et permet d'identifier les énoncés et les réponses
      */
-    public Question(String unEnonce, ArrayList<String>desReponses){ 
+    public Question(String unEnonce, ArrayList<String>desReponses,String category,short difficulty,String bonFeedBack,String mauvaisFeedBack){
     	
     	this.enonce = unEnonce;
     	this.reponses = desReponses;
-    	
+        this.category = category;
+        this.difficulty = difficulty;
+        this.bonFeedBack = bonFeedBack;
+        this.mauvaisFeedBack = mauvaisFeedBack;
     }
     
     //gets & sets
@@ -66,6 +69,70 @@ public class Question {
 	public String getAnswerX(int pos){
 		return reponses.get(pos);
 	}
+
+    /**
+     *retourne bonfeedback actuel
+     * @return bonFeedBack le feedback actuel
+     */
+    public String getBonFeedBack() {
+        return bonFeedBack;
+    }
+
+    /**
+     * modifie le bon feedback
+     * @param bonFeedBack nouveau feedback
+     */
+    public void setBonFeedBack(String bonFeedBack) {
+        this.bonFeedBack = bonFeedBack;
+    }
+
+    /**
+     *retourne feedback actuel
+     * @return mauvais FeedBack actuel
+     */
+    public String getMauvaisFeedBack() {
+        return mauvaisFeedBack;
+    }
+
+    /**
+     * change le mauvais feedback
+     * @param mauvaisFeedBack nouveau feedback
+     */
+    public void setMauvaisFeedBack(String mauvaisFeedBack) {
+        this.mauvaisFeedBack = mauvaisFeedBack;
+    }
+
+    /**
+     * retourne la categorie actuelle
+     * @return category actuelle
+     */
+    public String getCategory() {
+        return category;
+    }
+
+    /**
+     * modifie la category
+     * @param category nouvelle categorie
+     */
+    public void setCategory(String category) {
+        this.category = category;
+    }
+
+    /**
+     * retourne la difficulte actuelle
+     * @return difficulty la difficulte actuelle
+     */
+    public short getDifficulty() {
+        return difficulty;
+    }
+
+    /**
+     * modifier la difiiculte actuelle
+     * @param difficulty
+     */
+    public void setDifficulty(short difficulty) {
+        this.difficulty = difficulty;
+    }
 }
     
     

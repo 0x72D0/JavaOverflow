@@ -4,14 +4,18 @@ package Modele; /**
  * @author: Duy, 2016/02/16
  */
 //Modifications par Gio 2016/03/5
+
+import javax.swing.*;
 import java.io.*;
-import java.util.*;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.util.ArrayList;
+import java.util.Arrays;
 
 public class Database {
 
 	private ArrayList<Question> questions = new ArrayList<Question>();
+	private ArrayList<String> category = new ArrayList<String>();
 	
 	/**
 	 *Constructeur qui crée le chemin pour les fichiers à lire (questions et réponses),
@@ -61,11 +65,15 @@ public class Database {
 						System.out.println("File not found exception when create the database\n\n");
 						e.printStackTrace();
 					}
-					catch(IOException e)
-					{
-						System.out.println("IO exception when create the database\n\n");
-						e.printStackTrace();
-					}
+					catch(IOException e) {
+                        System.out.println("IO exception when create the database\n\n");
+                        e.printStackTrace();
+                    }
+                    catch(ArrayIndexOutOfBoundsException E)
+                    {
+                    JOptionPane.showMessageDialog(null,"Des erreurs de fichiers sont apparues en essayant de créer la base de données.");
+                    System.exit(1);
+                    }
 				}
 				else if (listeChemins[i].isDirectory()) 
 				{
@@ -92,23 +100,66 @@ public class Database {
 	public void setQuestions(ArrayList<Question> questions) {
 		this.questions = questions;
 	}
-	
-	//parse the string
+
+    /**
+     * la categorie actuelle
+     * @return category
+     */
+    public ArrayList<String> getCategory() {
+        return category;
+    }
+
+    /**
+     * methode pour modifier la categorie de question
+     * @param category the new category
+     */
+    public void setCategory(ArrayList<String> category) {
+        this.category = category;
+    }
+    //parse the string
 	/**
 	 * méthode pour séparer les questions des réponses.
-	 * @param buffer
-	 * 	String recevant le lecture du fichier
-	 */
+     * @param buffer
+     * 	String recevant le lecture du fichier
+     */
 	public Question parse(String buffer)
 	{
-		String[] splitString = buffer.split("~");
 
-		//split all the answer
-		ArrayList<String> answer = new ArrayList<String>(Arrays.asList(splitString[3].split("$")));
-		
-		//create the Question object
-		Question question = new Question(splitString[1], answer);
-		return question;
-	}
+            String[] splitString = buffer.split("~");
+
+            //split all the answer
+            ArrayList<String> answer = new ArrayList<String>(Arrays.asList(splitString[3].split("$")));
+
+            //initialize the difficulty
+            short dif = Short.parseShort(splitString[7]);
+
+            if(dif < 0)
+                dif = 0;
+
+            if(dif > 100)
+                dif = 100;
+
+            //initialize the category(to optimize)
+            String catbuf = splitString[5];
+            int c = 1;
+
+            for(String s:category)
+            {
+                if(s.equals(catbuf))
+                    break;
+                c++;
+            }
+
+            if(c == category.size())
+            {
+                category.add(catbuf);
+            }
+
+            //create the Question object
+            Question question = new Question(splitString[1], answer, catbuf, dif, splitString[9], splitString[11]);
+
+            return question;
+
+    }
 	
 }
