@@ -1,4 +1,5 @@
-package Modele; /**
+package Modele;
+/**
  * Cette classe crée un database dans un ArrayList pour poser les questions et prendre les réponses
  * 
  * @author: Duy, 2016/02/16
@@ -12,76 +13,82 @@ import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.Arrays;
 
-public class Database {
+public class Database implements Serializable{
 
 	private ArrayList<Question> questions = new ArrayList<Question>();
 	private ArrayList<String> category = new ArrayList<String>();
 	
 	/**
-	 *Constructeur qui crée le chemin pour les fichiers à lire (questions et réponses),
-	 * qui sépare et différencie les questions et réponses
+	 * Constructeur de la Database
+	 */
+	public Database()
+	{
+		try
+		{
+			createObject();
+		}
+		catch (FileNotFoundException e) 
+		{
+			// TODO Auto-generated catch block
+			System.out.println("File not found exception when create the database\n\n");
+			e.printStackTrace();
+		}
+		catch(IOException e) 
+		{
+            System.out.println("IO exception when create the database\n\n");
+            e.printStackTrace();
+        }
+        catch(ArrayIndexOutOfBoundsException E)
+        {
+			JOptionPane.showMessageDialog(null,"Des erreurs de fichiers sont apparues en essayant de créer la base de données.");
+            System.exit(1);
+        }
+	}
+	
+	/**
+	 * cree l'objet Database contenant tout les questions
 	 * @throws Exception dans le cas où on ne trouve pas de fichier
 	 * @throws Exception dans le cas où il y a un problème quelconque avec les fichiers
 	 */
-	public Database(){
-			String q = null;
-			String a = null;
+	private void createObject() throws IOException, FileNotFoundException, ArrayIndexOutOfBoundsException
+	{
+		String q = null;
+		String a = null;
 			
-			//Cree le chemin des fichiers questions
-			Path currentRelativePath = Paths.get(""); 
-			File dir = new File(currentRelativePath.toAbsolutePath().toString()+File.separator+ "Questions");
-			System.out.println(currentRelativePath.toAbsolutePath().toString()+File.separator+ "Questions");
+		//Cree le chemin des fichiers questions
+		Path currentRelativePath = Paths.get(""); 
+		File dir = new File(currentRelativePath.toAbsolutePath().toString()+File.separator+ "Questions");
+		System.out.println(currentRelativePath.toAbsolutePath().toString()+File.separator+ "Questions");
 
-			//Cree un array de tout les fichiers trouves	
-			File[] listeChemins = dir.listFiles();
-			System.out.println(listeChemins.length);
+		//Cree un array de tout les fichiers trouves	
+		File[] listeChemins = dir.listFiles();
+		System.out.println(listeChemins.length);
 		
 			
-			for (int i = 0; i < listeChemins.length; i++){
+		for (int i = 0; i < listeChemins.length; i++)
+		{
 				
-				if(listeChemins[i].isFile()){
-					
-					try {
+			if(listeChemins[i].isFile())
+			{	
+				BufferedReader read = new BufferedReader(new FileReader(listeChemins[i]));
+				StringBuffer buffer = new StringBuffer();
+				String line = null;
 						
-						BufferedReader read = new BufferedReader(new FileReader(listeChemins[i]));
-						StringBuffer buffer = new StringBuffer();
-						String line = null;
-						
-						// put the entire file inside a string
-						while((line = read.readLine()) != null)
-						{
-							buffer.append(line);
-							buffer.append("\n");
-						}
-
-						//parse the string and put the Question Object created inside the array
-						questions.add(parse(buffer.toString()));
-
-						
-					}
-					catch (FileNotFoundException e) 
-					{
-						// TODO Auto-generated catch block
-						System.out.println("File not found exception when create the database\n\n");
-						e.printStackTrace();
-					}
-					catch(IOException e) {
-                        System.out.println("IO exception when create the database\n\n");
-                        e.printStackTrace();
-                    }
-                    catch(ArrayIndexOutOfBoundsException E)
-                    {
-                    JOptionPane.showMessageDialog(null,"Des erreurs de fichiers sont apparues en essayant de créer la base de données.");
-                    System.exit(1);
-                    }
-				}
-				else if (listeChemins[i].isDirectory()) 
+				// put the entire file inside a string
+				while((line = read.readLine()) != null)
 				{
-			        //System.out.println("Directory " + list[i].getName());
+					buffer.append(line);
+					buffer.append("\n");
 				}
-			}
-			
 
+				//parse the string and put the Question Object created inside the array
+				questions.add(parse(buffer.toString()));
+			}
+			else if (listeChemins[i].isDirectory()) 
+			{
+				//System.out.println("Directory " + list[i].getName());
+			}
+		}
 	}
 	
 	//getters&setters
@@ -89,7 +96,8 @@ public class Database {
 	 *méthode pour retourner le ArrayList contenant les questions et ses réponses
 	 * @return retourne le ArrayList (database)
 	 */
-	public ArrayList<Question> getQuestions() {
+	public ArrayList<Question> getQuestions() 
+	{
 		return questions;
 	}
 	/**
@@ -97,7 +105,8 @@ public class Database {
 	 * @param questions
 	 * 	ArrayList contenant tout le database (textes de tous les fichiers)
 	 */
-	public void setQuestions(ArrayList<Question> questions) {
+	public void setQuestions(ArrayList<Question> questions) 
+	{
 		this.questions = questions;
 	}
 
@@ -105,7 +114,8 @@ public class Database {
      * la categorie actuelle
      * @return category
      */
-    public ArrayList<String> getCategory() {
+    public ArrayList<String> getCategory() 
+    {
         return category;
     }
 
@@ -113,7 +123,8 @@ public class Database {
      * methode pour modifier la categorie de question
      * @param category the new category
      */
-    public void setCategory(ArrayList<String> category) {
+    public void setCategory(ArrayList<String> category) 
+    {
         this.category = category;
     }
     //parse the string
