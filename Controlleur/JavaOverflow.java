@@ -4,6 +4,9 @@ package Controlleur;
 import Modele.*;
 import Vue.*;
 import java.util.*;
+import java.io.*;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 
 /**
  * Class JavaOverflow
@@ -45,8 +48,8 @@ public class JavaOverflow {
  * @return Vrai si la reponse est vrai, faut dans le cas contraire.
  */
 	public static boolean verifyStringAnswer(String rep)
-	{
-		for(String ans: cwq.getReponses())
+	{	
+		for(String ans : cwq.getReponses())
 		{
 			if(rep.equals(ans))
 			{
@@ -69,8 +72,19 @@ public class JavaOverflow {
 
     public static void main(String[]args)
     {
-		database = new Database();
-        new MainMenu();
+		try
+		{
+			Path currentRelativePath = Paths.get("");
+			File seri = new File(currentRelativePath.toAbsolutePath().toString()+File.separator+ "database.Jobj");
+			FileInputStream fin = new FileInputStream(seri);
+			ObjectInputStream ois = new ObjectInputStream(fin);
+			database = (Database) ois.readObject();
+			new MainMenu();
+		}
+		catch(Exception e)
+		{
+			e.printStackTrace();
+		}
     }
 
 
