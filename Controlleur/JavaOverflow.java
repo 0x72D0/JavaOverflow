@@ -45,10 +45,15 @@ public class JavaOverflow {
  * Verifie une reponse entre en parametre en la comparant avec les reponses
  * de la question actuelle.
  * @param rep Une reponse  de l'utilisateur
- * @return Vrai si la reponse est vrai, faut dans le cas contraire.
+ * @return Vrai si la reponse est vrai, faux dans le cas contraire.
  */
 	public static boolean verifyStringAnswer(String rep)
 	{	
+		// dans cet algorithme rep est la reponse entree par l'utilisateur
+		// et ici answer represente les reponse attendu par le programme
+		
+		rep = rep.toLowerCase();
+		
 		for(String ans : cwq.getReponses())
 		{
 			if(rep.equals(ans))
@@ -56,10 +61,22 @@ public class JavaOverflow {
 				return true;
 			}
 		}
-
+		
 		return false;
 	}
-
+	
+	public static boolean verifyFormatAnswer(String rep, String ans)
+	{
+		
+		for(int i = 0; i < ans.length(); i++)
+		{
+			if(rep.charAt(i) == '/')
+			{
+				
+			}
+		}
+		return true;
+	}
 
     //
     // Accessor methods
