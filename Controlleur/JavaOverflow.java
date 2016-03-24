@@ -53,26 +53,54 @@ public class JavaOverflow {
 		// et ici answer represente les reponse attendu par le programme
 		
 		rep = rep.toLowerCase();
+		System.out.println(rep);
 		
 		for(String ans : cwq.getReponses())
 		{
+			System.out.println(ans);
 			if(rep.equals(ans))
 			{
 				return true;
 			}
 		}
 		
-		return false;
+		return verifyFormatAnswer(rep, cwq.getReponses().get(cwq.getReponses().size()-1));
 	}
 	
 	public static boolean verifyFormatAnswer(String rep, String ans)
 	{
+		String[] forAns = ans.split(" ");
+		String[] forRep = rep.split(" ");
 		
-		for(int i = 0; i < ans.length(); i++)
+		
+		for(int i = 0; i < forAns.length; i++)
 		{
-			if(rep.charAt(i) == '/')
+			String bufAns = forAns[i];
+			String bufRep = forRep[i];
+			
+			//check l'answer
+			if(bufAns.charAt(0) == '/')
 			{
+				if(bufAns.charAt(1) == '*')
+				{
+					continue;
+				}
 				
+				if(bufAns.charAt(1) == '/')
+				{
+					bufAns = '/' + bufAns.substring(2);
+				}
+			}
+			
+			//apres check l'egalite
+			if(bufAns == bufRep)
+			{
+				continue;
+			}
+			
+			else
+			{
+				return false;
 			}
 		}
 		return true;

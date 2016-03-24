@@ -137,9 +137,10 @@ public class Database implements Serializable{
 	{
 
             String[] splitString = buffer.split("~");
-
+            String[] rep = splitString[3].split("#");
+            
             //split all the answer
-            ArrayList<String> answer = new ArrayList<String>(Arrays.asList(splitString[3].split("$")));
+            ArrayList<String> answer = new ArrayList<String>(Arrays.asList(rep));
 
             //initialize the difficulty
             short dif = Short.parseShort(splitString[7]);
