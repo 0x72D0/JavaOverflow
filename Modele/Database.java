@@ -153,7 +153,7 @@ public class Database implements Serializable{
 
             //initialize the category(to optimize)
             String catbuf = splitString[5];
-            int c = 1;
+            int c = 0;
 
             for(String s:category)
             {
@@ -166,6 +166,8 @@ public class Database implements Serializable{
             {
                 category.add(catbuf);
             }
+            
+            System.out.println(catbuf);
 
             //create the Question object
             Question question = new Question(splitString[1], answer, catbuf, dif, splitString[9], splitString[11]);

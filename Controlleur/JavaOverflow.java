@@ -47,16 +47,24 @@ public class JavaOverflow {
  * @param rep Une reponse  de l'utilisateur
  * @return Vrai si la reponse est vrai, faux dans le cas contraire.
  */
+ 
+	public static String formatString(String str)
+	{
+		str = str.toLowerCase();
+		return str;
+	}
+	
 	public static boolean verifyStringAnswer(String rep)
 	{	
 		// dans cet algorithme rep est la reponse entree par l'utilisateur
 		// et ici answer represente les reponse attendu par le programme
 		
-		rep = rep.toLowerCase();
+		rep = formatString(rep);
 		System.out.println(rep);
 		
 		for(String ans : cwq.getReponses())
 		{
+			ans = formatString(ans);
 			System.out.println(ans);
 			if(rep.equals(ans))
 			{
@@ -64,7 +72,7 @@ public class JavaOverflow {
 			}
 		}
 		
-		return verifyFormatAnswer(rep, cwq.getReponses().get(cwq.getReponses().size()-1));
+		return verifyFormatAnswer(rep, formatString(cwq.getReponses().get(cwq.getReponses().size()-1)));
 	}
 	
 	public static boolean verifyFormatAnswer(String rep, String ans)
@@ -83,21 +91,20 @@ public class JavaOverflow {
 			{
 				if(bufAns.charAt(1) == '*')
 				{
+					System.out.println("found");
 					continue;
 				}
-				
-				if(bufAns.charAt(1) == '/')
+				else if(bufAns.charAt(1) == '/')
 				{
 					bufAns = '/' + bufAns.substring(2);
 				}
 			}
 			
 			//apres check l'egalite
-			if(bufAns == bufRep)
+			if(bufAns.equals(bufRep))
 			{
 				continue;
 			}
-			
 			else
 			{
 				return false;
@@ -124,8 +131,10 @@ public class JavaOverflow {
 			FileInputStream fin = new FileInputStream(seri);
 			ObjectInputStream ois = new ObjectInputStream(fin);
 			database = (Database) ois.readObject();
+			System.out.println(database.getCategory().size());
 			new MainMenu();
 		}
+		
 		catch(Exception e)
 		{
 			e.printStackTrace();
