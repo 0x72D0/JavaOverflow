@@ -23,7 +23,7 @@ public class gameScreen extends SimpleFrame implements ActionListener{
     JLabel reponseLabel;
     JTextField reponse;
     JScrollPane scroll;
-    JButton confirmer,nouvelleQuestion;
+    JButton confirmer,nouvelleQuestion,diff;
 
     
     //
@@ -47,10 +47,13 @@ public class gameScreen extends SimpleFrame implements ActionListener{
         confirmer.addActionListener(this);
         nouvelleQuestion = new JButton("nouvelle question");
         nouvelleQuestion.addActionListener(this);
+        diff = new JButton("diff");
+        diff.addActionListener(this);
         this.getPanel().add(reponseLabel);
         this.getPanel().add(reponse);
         this.getPanel().add(confirmer);
         this.getPanel().add(nouvelleQuestion);
+        this.getPanel().add(diff);
         this.add(scroll, BorderLayout.CENTER);
         this.add(this.getPanel(), BorderLayout.PAGE_END);
         this.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
@@ -83,7 +86,7 @@ public class gameScreen extends SimpleFrame implements ActionListener{
 	@Override
 	public void actionPerformed(ActionEvent event)
 	{
-        if (event.getSource()==confirmer)
+        if(event.getSource()==confirmer)
             if(JavaOverflow.verifyStringAnswer(reponse.getText())) {
                 JOptionPane.showMessageDialog(null, "Bravo", "JavaOverflow", JOptionPane.INFORMATION_MESSAGE, null);
                 JavaOverflow.generateQuestion();
@@ -92,9 +95,19 @@ public class gameScreen extends SimpleFrame implements ActionListener{
             }
             else
                 JOptionPane.showMessageDialog(null,"Il y a du travail à faire.", "JavaOverflow", JOptionPane.INFORMATION_MESSAGE,null );
-        else if(event.getSource()==nouvelleQuestion)
-            JavaOverflow.generateQuestion();
-        questionArea.setText(JavaOverflow.cwq.getEnonce());
+        else if(event.getSource()==nouvelleQuestion){
+                JavaOverflow.generateQuestion();
+                questionArea.setText(JavaOverflow.cwq.getEnonce());
+            }
+        else if(event.getSource()==diff){
+			String buffer = "Difficulte par categorie";
+			for(String cat:JavaOverflow.database.getCategory())
+			{
+				buffer += "\n"+cat+" : "+String.valueOf(JavaOverflow.categoryLevel(cat));
+			}
+			System.out.println(buffer);
+	}		
+
 	}
 
 }

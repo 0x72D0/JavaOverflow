@@ -170,7 +170,7 @@ public class Database implements Serializable{
             System.out.println(catbuf);
 
             //create the Question object
-            Question question = new Question(splitString[1], answer, catbuf, dif, splitString[9], splitString[11]);
+            Question question = new Question(splitString[1], answer, catbuf, dif, splitString[9], splitString[11],false);
 
             return question;
 

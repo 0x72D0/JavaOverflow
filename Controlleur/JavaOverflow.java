@@ -68,6 +68,7 @@ public class JavaOverflow {
 			System.out.println(ans);
 			if(rep.equals(ans))
 			{
+				cwq.setDone(true);
 				return true;
 			}
 		}
@@ -112,6 +113,27 @@ public class JavaOverflow {
 		}
 		return true;
 	}
+	
+	public static short categoryLevel(String category)
+    {
+        
+        for(short level =1;level<101;level++)
+        {
+            for(Question q:database.getQuestions())
+            {
+                if(q.getDifficulty()==level) {
+                    if(q.getCategory().equals(category)) {
+
+                        if(!q.isDone()) {
+                            return level;
+                        }
+
+                    }
+                }
+            }
+        }
+        return 100;
+    }
 
     //
     // Accessor methods
