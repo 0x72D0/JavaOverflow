@@ -18,11 +18,12 @@ public class Question implements Serializable{
     private ArrayList<String> reponses;
     private String enonce,bonFeedBack,mauvaisFeedBack,category;
     short difficulty;
+    boolean done;
     // Constructeurs
     /**
      *Constructeur qui initialise chaque objet question et permet d'identifier les énoncés et les réponses
      */
-    public Question(String unEnonce, ArrayList<String>desReponses,String category,short difficulty,String bonFeedBack,String mauvaisFeedBack){
+    public Question(String unEnonce, ArrayList<String>desReponses,String category,short difficulty,String bonFeedBack,String mauvaisFeedBack,boolean done){
     	
     	this.enonce = unEnonce;
     	this.reponses = desReponses;
@@ -30,6 +31,7 @@ public class Question implements Serializable{
         this.difficulty = difficulty;
         this.bonFeedBack = bonFeedBack;
         this.mauvaisFeedBack = mauvaisFeedBack;
+        this.done = done;
     }
     
     //gets & sets
@@ -135,6 +137,10 @@ public class Question implements Serializable{
     public void setDifficulty(short difficulty) {
         this.difficulty = difficulty;
     }
+    
+    public void setDone(boolean done){this.done=done;}
+    
+    public boolean isDone(){return done;}
 }
     
     
