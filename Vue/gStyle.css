@@ -1,0 +1,10 @@
+.root{
+	
+	-fx-background-color: #282828;
+	
+}
+
+#btQuitter{
+	-fx-background-color: linear-gradient(#AB4642, #AB4343);
+	
+}

@@ -3,6 +3,13 @@ package Controlleur;
 
 import Modele.*;
 import Vue.*;
+import javafx.application.*;
+import javafx.stage.Stage;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.*;
+import javafx.scene.control.*;
+import javafx.scene.control.Alert.AlertType;
+
 import java.util.*;
 import java.io.*;
 import java.nio.file.Path;
@@ -13,7 +20,7 @@ import java.nio.file.Paths;
  * classe principale initialisant le GUI ainsi que la base de donnee.
  * @author Lucas 23 fevrier 2016
  */
-public class JavaOverflow {
+public class JavaOverflow extends Application{
 
     //
     // Fields
@@ -146,6 +153,7 @@ public class JavaOverflow {
 
     public static void main(String[]args)
     {
+    	
 		try
 		{
 			Path currentRelativePath = Paths.get("");
@@ -154,7 +162,12 @@ public class JavaOverflow {
 			ObjectInputStream ois = new ObjectInputStream(fin);
 			database = (Database) ois.readObject();
 			System.out.println(database.getCategory().size());
-			new MainMenu();
+			
+			//new MainMenu(); Plus besoin vu que on utilize pas swing
+			
+			launch(args); //Lance JavaFx
+			
+			
 		}
 		
 		catch(Exception e)
@@ -162,6 +175,38 @@ public class JavaOverflow {
 			e.printStackTrace();
 		}
     }
-
+    
+	public void start(Stage primaryStage) throws Exception {
+		
+		Parent root = FXMLLoader.load(getClass().getResource("/Vue/Accueil.fxml"));
+		
+		Scene scene = new Scene(root, 600,400);
+		
+		primaryStage.setScene(scene);
+		primaryStage.setTitle("JavaOverflow - Acceuil");
+		primaryStage.show();
+		
+		primaryStage.setOnCloseRequest(e -> {
+			e.consume();
+			closeProgram(primaryStage);
+		});	
+		
+	}
+	
+	public static void closeProgram(Stage theStage){
+		
+		Alert alert = new Alert(AlertType.CONFIRMATION);
+		alert.setTitle("Fermeture");
+		alert.setHeaderText("Fermeture du programme");
+		alert.setContentText("Etes-vous sur de vouloir fermer?");
+		
+		Optional<ButtonType> result = alert.showAndWait();
+		if (result.get() == ButtonType.OK){
+			theStage.close();
+		} else {
+		   
+		}
+	}
+	
 
 }
