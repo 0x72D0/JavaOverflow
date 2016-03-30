@@ -46,7 +46,13 @@ public class JavaOverflow extends Application{
 	{
 		Random rand = new Random();
 		int i = rand.nextInt(database.getQuestions().size()-1);
-		cwq = database.getQuestions().get(i);
+		if(database.getQuestions().get(i).getDifficulty()==categoryLevel(database.getQuestions().get(i).getCategory()))
+			if(!database.getQuestions().get(i).isDone())
+				cwq = database.getQuestions().get(i);
+			else
+				generateQuestion();
+		else
+			generateQuestion();
 	}
 /**
  * Verifie une reponse entre en parametre en la comparant avec les reponses
