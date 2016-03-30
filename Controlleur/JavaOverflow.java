@@ -38,29 +38,34 @@ public class JavaOverflow extends Application{
     //
     // Methods
     //
-/**
- * Initialise la base de donne en chargeant les fichiers questions. 
- * @return void
- */
+    /**
+     * Initialise la base de donne en chargeant les fichiers questions. 
+     * @return void
+     */
 	public static void generateQuestion()
 	{
 		Random rand = new Random();
 		int i = rand.nextInt(database.getQuestions().size()-1);
 		cwq = database.getQuestions().get(i);
 	}
-/**
- * Verifie une reponse entre en parametre en la comparant avec les reponses
- * de la question actuelle.
- * @param rep Une reponse  de l'utilisateur
- * @return Vrai si la reponse est vrai, faux dans le cas contraire.
- */
- 
+
+    /**
+     * formate le String de la reponse et de la reponse de l'utilisateur
+     * @param str
+     * @return le String une fois formater
+     */
 	public static String formatString(String str)
 	{
 		str = str.toLowerCase();
 		return str;
 	}
 	
+    /**
+    * Verifie une reponse entre en parametre en la comparant avec les reponses
+    * de la question actuelle.
+    * @param rep Une reponse  de l'utilisateur
+    * @return Vrai si la reponse est vrai, faux dans le cas contraire.
+    */
 	public static boolean verifyStringAnswer(String rep)
 	{	
 		// dans cet algorithme rep est la reponse entree par l'utilisateur
@@ -83,6 +88,12 @@ public class JavaOverflow extends Application{
 		return verifyFormatAnswer(rep, formatString(cwq.getReponses().get(cwq.getReponses().size()-1)));
 	}
 	
+    /**
+     * verifie la reponse modele avec la reponse de l'utilisateur
+     * @param rep
+     * @param ans
+     * @return true si l'egalite est vrai, sinon false 
+     */
 	public static boolean verifyFormatAnswer(String rep, String ans)
 	{
 		String[] forAns = ans.split(" ");
@@ -121,6 +132,11 @@ public class JavaOverflow extends Application{
 		return true;
 	}
 	
+    /**
+     * calcule le niveau de la categorie
+     * @param category
+     * @return le niveau de la categorie
+     */
 	public static short categoryLevel(String category)
     {
         
@@ -128,10 +144,13 @@ public class JavaOverflow extends Application{
         {
             for(Question q:database.getQuestions())
             {
-                if(q.getDifficulty()==level) {
-                    if(q.getCategory().equals(category)) {
+                if(q.getDifficulty()==level)
+                {
+                    if(q.getCategory().equals(category))
+                    {
 
-                        if(!q.isDone()) {
+                        if(!q.isDone())
+                        {
                             return level;
                         }
 

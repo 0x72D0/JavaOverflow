@@ -102,7 +102,8 @@ public class Question implements Serializable{
      * change le mauvais feedback
      * @param mauvaisFeedBack nouveau feedback
      */
-    public void setMauvaisFeedBack(String mauvaisFeedBack) {
+    public void setMauvaisFeedBack(String mauvaisFeedBack)
+    {
         this.mauvaisFeedBack = mauvaisFeedBack;
     }
 
@@ -110,7 +111,8 @@ public class Question implements Serializable{
      * retourne la categorie actuelle
      * @return category actuelle
      */
-    public String getCategory() {
+    public String getCategory()
+    {
         return category;
     }
 
@@ -118,7 +120,8 @@ public class Question implements Serializable{
      * modifie la category
      * @param category nouvelle categorie
      */
-    public void setCategory(String category) {
+    public void setCategory(String category)
+    {
         this.category = category;
     }
 
@@ -126,7 +129,8 @@ public class Question implements Serializable{
      * retourne la difficulte actuelle
      * @return difficulty la difficulte actuelle
      */
-    public short getDifficulty() {
+    public short getDifficulty()
+    {
         return difficulty;
     }
 
@@ -134,13 +138,27 @@ public class Question implements Serializable{
      * modifier la difiiculte actuelle
      * @param difficulty
      */
-    public void setDifficulty(short difficulty) {
+    public void setDifficulty(short difficulty)
+    {
         this.difficulty = difficulty;
     }
     
-    public void setDone(boolean done){this.done=done;}
-    
-    public boolean isDone(){return done;}
+    /**
+     * mutateur de la variable done
+     * @param done 
+     */
+    public void setDone(boolean done)
+    {
+        this.done=done;
+    }
+    /**
+     * acesseur de la variable done
+     * @return la valeur de done 
+     */
+    public boolean isDone()
+    {
+        return done;
+    }
 }
     
     
