@@ -45,7 +45,7 @@ public class JavaOverflow extends Application{
 	public static void generateQuestion()
 	{	boolean allDone = true;
 		for(Question q:database.getQuestions())
-			if(q.isDone())
+			if(!q.isDone())
 				allDone=false;
 		Random rand = new Random();
 		int i = rand.nextInt(database.getQuestions().size()-1);
