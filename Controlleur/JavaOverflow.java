@@ -57,7 +57,47 @@ public class JavaOverflow extends Application{
 	public static String formatString(String str)
 	{
 		str = str.toLowerCase();
-		return str;
+        
+        StringBuffer buf = new StringBuffer(str);
+        
+        for(int i = 0; i < buf.length(); i++)
+        {
+            char a = buf.charAt(i);
+            
+            switch(a)
+            {
+                case '\u00e0':
+                    buf.setCharAt(i, 'a');
+                    break;
+                case '\u00e2':
+                    buf.setCharAt(i, 'a');
+                    break;
+                case '\u00e8':
+                    buf.setCharAt(i, 'e');
+                    break;
+                case '\u00e9':
+                    buf.setCharAt(i, 'e');
+                    break;
+                case '\u00ea':
+                    buf.setCharAt(i, 'e');
+                    break;
+                case '\u00eb':
+                    buf.setCharAt(i, 'e');
+                    break;
+                case '\u00ee':
+                    buf.setCharAt(i, 'i');
+                    break;
+                case '\u00ef':
+                    buf.setCharAt(i, 'i');
+                    break;
+                case '\u00fb':
+                    buf.setCharAt(i, 'u');
+                    break;
+            }
+        }
+        
+        
+		return buf.toString();
 	}
 	
     /**
