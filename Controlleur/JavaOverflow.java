@@ -43,10 +43,29 @@ public class JavaOverflow extends Application{
      * @return void
      */
 	public static void generateQuestion()
-	{
+	{	boolean allDone = true;
+		for(Question q:database.getQuestions())
+		{	
+            if(!q.isDone())
+            {
+				allDone=false;
+                break;
+            }
+		}
 		Random rand = new Random();
-		int i = rand.nextInt(database.getQuestions().size()-1);
-		cwq = database.getQuestions().get(i);
+		int i = rand.nextInt(database.getQuestions().size());
+		if(allDone)
+			System.out.println("Toutes les questions ont étées réussies");
+		else
+        {
+			if(database.getQuestions().get(i).getDifficulty()==categoryLevel(database.getQuestions().get(i).getCategory()))
+				if(!database.getQuestions().get(i).isDone())
+					cwq = database.getQuestions().get(i);
+				else
+					generateQuestion();
+			else
+				generateQuestion();
+        }
 	}
 
     /**
