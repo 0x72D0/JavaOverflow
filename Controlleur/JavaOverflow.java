@@ -45,14 +45,19 @@ public class JavaOverflow extends Application{
 	public static void generateQuestion()
 	{	boolean allDone = true;
 		for(Question q:database.getQuestions())
-		{	if(!q.isDone())
+		{	
+            if(!q.isDone())
+            {
 				allDone=false;
+                break;
+            }
 		}
 		Random rand = new Random();
-		int i = rand.nextInt(database.getQuestions().size()-1);
+		int i = rand.nextInt(database.getQuestions().size());
 		if(allDone)
 			System.out.println("Toutes les questions ont étées réussies");
 		else
+        {
 			if(database.getQuestions().get(i).getDifficulty()==categoryLevel(database.getQuestions().get(i).getCategory()))
 				if(!database.getQuestions().get(i).isDone())
 					cwq = database.getQuestions().get(i);
@@ -60,6 +65,7 @@ public class JavaOverflow extends Application{
 					generateQuestion();
 			else
 				generateQuestion();
+        }
 	}
 /**
  * Verifie une reponse entre en parametre en la comparant avec les reponses
