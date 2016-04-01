@@ -8,7 +8,7 @@
 <?import java.lang.*?>
 <?import javafx.scene.layout.*?>
 
-<VBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" spacing="10.0" style="-fx-background-color: 282828;" styleClass="background" stylesheets="@gStyle.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controlleur.Accueil">
+<VBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" spacing="10.0" stylesheets="@gStyle.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controlleur.Accueil">
    <children>
       <Button fx:id="btCommencer" defaultButton="true" mnemonicParsing="false" onAction="#handlerCommencer" text="Commencer">
          <cursor>
@@ -20,6 +20,7 @@
             <Cursor fx:constant="HAND" />
          </cursor>
       </Button>
+      <Button fx:id="btGenererQ" mnemonicParsing="false" onAction="#handleGenererQ" text="Generer Question" />
       <Button fx:id="btQuitter" mnemonicParsing="false" onAction="#handlerQuitter" text="Quitter">
          <cursor>
             <Cursor fx:constant="HAND" />
