@@ -59,7 +59,6 @@ public class Game implements Initializable{
 			alert.setHeaderText("Mauvaise reponse.");
 			alert.setContentText(JavaOverflow.cwq.getMauvaisFeedBack());
             alert.showAndWait();
-            
 		}
 		
 	}

@@ -92,7 +92,10 @@ public class Database implements Serializable{
 	}
 	
 	//getters&setters
+<<<<<<< HEAD
     
+=======
+>>>>>>> 973bacf3f1323b2baa302b2065e5469c1a08a4ec
 	/**
 	 *méthode pour retourner le ArrayList contenant les questions et ses réponses
 	 * @return retourne le ArrayList (database)
