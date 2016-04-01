@@ -40,12 +40,13 @@ public class Game implements Initializable{
 	}
 	
 	public void btConfirmerHandler(ActionEvent event){
+		
 		if(JavaOverflow.verifyStringAnswer(fieldReponse.getText())){
 			
 			Alert alert = new Alert(AlertType.INFORMATION);
 			alert.setTitle("JavaOverflow");
-			alert.setHeaderText("Bonne reponse");
-			alert.setContentText(JavaOverflow.cwq.getBonFeedBack());
+			alert.setHeaderText("Bonne reponse.");
+			alert.setContentText("Bravo!");
 			alert.showAndWait();
 			
 			JavaOverflow.generateQuestion();
@@ -57,8 +58,8 @@ public class Game implements Initializable{
 			Alert alert = new Alert(AlertType.INFORMATION);
 			alert.setTitle("JavaOverflow");
 			alert.setHeaderText("Mauvaise reponse.");
-			alert.setContentText(JavaOverflow.cwq.getMauvaisFeedBack());
-            alert.showAndWait();
+			alert.setContentText("Essaye encore.");
+			alert.showAndWait();
 		}
 		
 	}
