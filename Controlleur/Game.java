@@ -44,8 +44,8 @@ public class Game implements Initializable{
 			
 			Alert alert = new Alert(AlertType.INFORMATION);
 			alert.setTitle("JavaOverflow");
-			alert.setHeaderText("Bonne reponse.");
-			alert.setContentText("Bravo!");
+			alert.setHeaderText("Bonne reponse");
+			alert.setContentText(JavaOverflow.cwq.getBonFeedBack());
 			alert.showAndWait();
 			
 			JavaOverflow.generateQuestion();
@@ -57,7 +57,9 @@ public class Game implements Initializable{
 			Alert alert = new Alert(AlertType.INFORMATION);
 			alert.setTitle("JavaOverflow");
 			alert.setHeaderText("Mauvaise reponse.");
-			alert.setContentText("Essaye encore.");
+			alert.setContentText(JavaOverflow.cwq.getMauvaisFeedBack());
+            alert.showAndWait();
+            
 		}
 		
 	}
