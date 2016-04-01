@@ -2,7 +2,6 @@
 package Controlleur;
 
 import Modele.*;
-import Vue.*;
 import javafx.application.*;
 import javafx.stage.Stage;
 import javafx.fxml.FXMLLoader;
@@ -151,9 +150,7 @@ public class JavaOverflow extends Application{
     //
 
     public static void main(String[]args)
-    {
-			//new MainMenu(); Plus besoin vu que on utilize pas swing
-			
+    {			
 			launch(args); //Lance JavaFx
     }
     
