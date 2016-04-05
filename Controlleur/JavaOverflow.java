@@ -42,23 +42,80 @@ public class JavaOverflow extends Application{
  */
 	public static void generateQuestion()
 	{
-		Random rand = new Random();
-		int i = rand.nextInt(database.getQuestions().size()-1);
-		cwq = database.getQuestions().get(i);
+		boolean allDone = true;
+        
+        for(Question q : database.getQuestions())
+        {
+            if(!q.isDone())
+            {
+                allDone = false;
+                break;
+            }
+        }
+        
+        Random rand = new Random();
+        int i = rand.nextInt(database.getQuestions().size());
+        if(allDone)
+            System.out.println("Toutes les questions ont étées réussies");
+        else
+        {
+            if(database.getQuestions().get(i).getDifficulty()==categoryLevel(database.getQuestions().get(i).getCategory()))
+                if(!database.getQuestions().get(i).isDone())
+                    cwq = database.getQuestions().get(i);
+                else
+                    generateQuestion();
+            else
+                generateQuestion();
+        }
 	}
-/**
- * Verifie une reponse entre en parametre en la comparant avec les reponses
- * de la question actuelle.
- * @param rep Une reponse  de l'utilisateur
- * @return Vrai si la reponse est vrai, faux dans le cas contraire.
- */
- 
-	public static String formatString(String str)
+    
+    /**
+     * formatte le String de la reponse et de la question pour tester leur egalite
+     * @param str1
+     * @return le string une fois formatter 
+     */
+	public static String formatString(String str1)
 	{
-		str = str.toLowerCase();
-		return str;
+		str1 = str1.toLowerCase();
+		StringBuffer str = new StringBuffer(str1);
+        for(int i = 0; i < str.length(); i++)
+        {
+            char a = str.charAt(i);
+            
+            switch(a)
+            {
+                case 224:str.setCharAt(i, 'a');
+                break;
+                case 226: str.setCharAt(i, 'a');
+                break;
+                
+                case 232: str.setCharAt(i, 'e');
+                break;
+                case 233: str.setCharAt(i, 'e');
+                break;
+                case 234: str.setCharAt(i, 'e');
+                break;
+                case 235: str.setCharAt(i, 'e');
+                break;
+                
+                case 238: str.setCharAt(i, 'i');
+                break;
+                case 239: str.setCharAt(i, 'i');
+                break;
+                
+                case 251: str.setCharAt(i, 'u');
+                break;
+            }
+        }
+        return str.toString();
 	}
 	
+    /**
+    * Verifie une reponse entre en parametre en la comparant avec les reponses
+    * de la question actuelle.
+    * @param rep Une reponse  de l'utilisateur
+    * @return Vrai si la reponse est vrai, faux dans le cas contraire.
+    */
 	public static boolean verifyStringAnswer(String rep)
 	{	
 		// dans cet algorithme rep est la reponse entree par l'utilisateur
