@@ -38,7 +38,6 @@ public class JavaOverflow extends Application{
     //
 /**
  * Initialise la base de donne en chargeant les fichiers questions. 
- * @return void
  */
 	public static void generateQuestion()
 	{
@@ -137,43 +136,17 @@ public class JavaOverflow extends Application{
 		
 		return verifyFormatAnswer(rep, formatString(cwq.getReponses().get(cwq.getReponses().size()-1)));
 	}
-	
+    
+    
+	/**
+     * check for a matching regex
+     * @param rep
+     * @param ans
+     * @return true si les regex matche sinon false
+     */
 	public static boolean verifyFormatAnswer(String rep, String ans)
 	{
-		String[] forAns = ans.split(" ");
-		String[] forRep = rep.split(" ");
-		
-		
-		for(int i = 0; i < forAns.length; i++)
-		{
-			String bufAns = forAns[i];
-			String bufRep = forRep[i];
-			
-			//check l'answer
-			if(bufAns.charAt(0) == '/')
-			{
-				if(bufAns.charAt(1) == '*')
-				{
-					System.out.println("found");
-					continue;
-				}
-				else if(bufAns.charAt(1) == '/')
-				{
-					bufAns = '/' + bufAns.substring(2);
-				}
-			}
-			
-			//apres check l'egalite
-			if(bufAns.equals(bufRep))
-			{
-				continue;
-			}
-			else
-			{
-				return false;
-			}
-		}
-		return true;
+		return rep.matches(ans);
 	}
 	
 	public static short categoryLevel(String category)
