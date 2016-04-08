@@ -67,27 +67,34 @@ public class Database implements Serializable{
 			
 		for (int i = 0; i < listeChemins.length; i++)
 		{
-				
-			if(listeChemins[i].isFile())
-			{	
-				BufferedReader read = new BufferedReader(new FileReader(listeChemins[i]));
-				StringBuffer buffer = new StringBuffer();
-				String line = null;
-						
-				// put the entire file inside a string
-				while((line = read.readLine()) != null)
-				{
-					buffer.append(line);
-					buffer.append("\n");
-				}
+			try
+            {
+                if(listeChemins[i].isFile())
+                {	
+                    BufferedReader read = new BufferedReader(new FileReader(listeChemins[i]));
+                    StringBuffer buffer = new StringBuffer();
+                    String line = null;
 
-				//parse the string and put the Question Object created inside the array
-				questions.add(parse(buffer.toString()));
-			}
-			else if (listeChemins[i].isDirectory()) 
-			{
-				//System.out.println("Directory " + list[i].getName());
-			}
+                    // put the entire file inside a string
+                    while((line = read.readLine()) != null)
+                    {
+                        buffer.append(line);
+                        buffer.append("\n");
+                    }
+
+                    //parse the string and put the Question Object created inside the array
+                    questions.add(parse(buffer.toString()));
+                }
+            
+                else if(listeChemins[i].isDirectory()) 
+                {
+                    //System.out.println("Directory " + list[i].getName());
+                }
+            }
+            catch(Exception e)
+            {
+                JOptionPane.showMessageDialog(null, "il y a une erreur lors du formatage du fichier suivant: " + listeChemins[i].getName());
+            }
 		}
 	}
 	

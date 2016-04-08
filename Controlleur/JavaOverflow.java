@@ -209,10 +209,9 @@ public class JavaOverflow extends Application{
 		alert.setContentText("Etes-vous sur de vouloir fermer?");
 		
 		Optional<ButtonType> result = alert.showAndWait();
-		if (result.get() == ButtonType.OK){
+		if (result.get() == ButtonType.OK)
+        {
 			theStage.close();
-		} else {
-		   
 		}
 	}
 	
