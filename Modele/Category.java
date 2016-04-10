@@ -41,8 +41,8 @@ public class Category
     
     public short getAvgDiff()
     {
-		return avgDiff
-	}
+		return avgDiff;
+    }
     
     public void setName(String str)
     {

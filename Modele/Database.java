@@ -135,7 +135,7 @@ public class Database implements Serializable{
                 String[] components = cat[i].split("\\\\");
                 System.out.println(components[0]);
                 System.out.println(components[1]);
-                Category catego = new Category(components[0], components[1],components[2]);
+                Category catego = new Category(components[0], components[1],Short.parseShort(components[2]));
                 category.add(catego);
             }
         }
@@ -222,7 +222,7 @@ public class Database implements Serializable{
 
             for(Category s:category)
             {
-                if(s.getname().equals(catbuf))
+                if(s.getName().equals(catbuf))
                 {
                     found = s;
                     break;
