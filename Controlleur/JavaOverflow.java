@@ -58,7 +58,7 @@ public class JavaOverflow extends Application{
             System.out.println("Toutes les questions ont étées réussies");
         else
         {
-            if(database.getQuestions().get(i).getDifficulty()==categoryLevel(database.getQuestions().get(i).getCategory()))
+            if(database.getQuestions().get(i).getDifficulty()==categoryLevel(database.getQuestions().get(i).getCategory().getname()))
                 if(!database.getQuestions().get(i).isDone())
                     cwq = database.getQuestions().get(i);
                 else

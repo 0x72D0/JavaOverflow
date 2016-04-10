@@ -16,7 +16,7 @@ import java.util.Arrays;
 public class Database implements Serializable{
 
 	private ArrayList<Question> questions = new ArrayList<Question>();
-	private ArrayList<String> category = new ArrayList<String>();
+	private ArrayList<Category> category = new ArrayList<Category>();
 	
 	/**
 	 * Constructeur de la Database
@@ -25,11 +25,11 @@ public class Database implements Serializable{
 	{
 		try
 		{
+            createCategories();
 			createObject();
 		}
 		catch (FileNotFoundException e) 
 		{
-			// TODO Auto-generated catch block
 			System.out.println("File not found exception when create the database\n\n");
 			e.printStackTrace();
 		}
@@ -91,12 +91,68 @@ public class Database implements Serializable{
                     //System.out.println("Directory " + list[i].getName());
                 }
             }
+            catch(FileNotFoundException e)
+            {
+                JOptionPane.showMessageDialog(null, "le dossier Questions est introuvable");
+                e.printStackTrace();
+                System.exit(3);
+            }
             catch(Exception e)
             {
                 JOptionPane.showMessageDialog(null, "il y a une erreur lors du formatage du fichier suivant: " + listeChemins[i].getName());
+                e.printStackTrace();
+                System.exit(4);
             }
 		}
 	}
+    
+    
+    public void createCategories()
+    {
+        try
+        {
+            Path currentRelativePath = Paths.get(""); 
+            File categoryFile = new File(currentRelativePath.toAbsolutePath().toString()+File.separator+ "category.txt");
+
+            BufferedReader read = new BufferedReader(new FileReader(categoryFile));
+            StringBuffer buffer = new StringBuffer();
+            String line = null;
+
+            // put the entire file inside a string
+            while((line = read.readLine()) != null)
+            {
+                buffer.append(line);
+                buffer.append("\n");
+            }
+            
+            String buf = new String(buffer);
+            String[] cat = buf.split("$");
+            System.out.println(cat.length-1);
+            
+            for(int i = 0; i < (cat.length-1); i++)
+            {
+                System.out.println(cat[i]);
+                String[] components = cat[i].split("\\\\");
+                System.out.println(components[0]);
+                System.out.println(components[1]);
+                Category catego = new Category(components[0], components[1]);
+                category.add(catego);
+            }
+        }
+        catch(FileNotFoundException e)
+        {
+            JOptionPane.showMessageDialog(null, "le fichier category.txt est introuvable");
+            e.printStackTrace();
+            System.exit(1);
+        }
+        catch(Exception e)
+        {
+            JOptionPane.showMessageDialog(null, "il y a une erreur lors du formatage du fichier category.txt");
+            e.printStackTrace();
+            System.exit(2);
+        }
+        
+    }
 	
 	//getters&setters
     
@@ -122,7 +178,7 @@ public class Database implements Serializable{
      * la categorie actuelle
      * @return category
      */
-    public ArrayList<String> getCategory() 
+    public ArrayList<Category> getCategory() 
     {
         return category;
     }
@@ -131,7 +187,7 @@ public class Database implements Serializable{
      * methode pour modifier la categorie de question
      * @param category the new category
      */
-    public void setCategory(ArrayList<String> category) 
+    public void setCategory(ArrayList<Category> category) 
     {
         this.category = category;
     }
@@ -141,7 +197,7 @@ public class Database implements Serializable{
      * @param buffer
      * 	String recevant le lecture du fichier
      */
-	public Question parse(String buffer)
+	public Question parse(String buffer) throws Exception
 	{
 
             String[] splitString = buffer.split("~");
@@ -161,24 +217,29 @@ public class Database implements Serializable{
 
             //initialize the category(to optimize)
             String catbuf = splitString[5];
+            Category found = new Category();
             int c = 0;
 
-            for(String s:category)
+            for(Category s:category)
             {
-                if(s.equals(catbuf))
+                if(s.getname().equals(catbuf))
+                {
+                    found = s;
                     break;
+                }
                 c++;
             }
 
             if(c == category.size())
             {
-                category.add(catbuf);
+               JOptionPane.showMessageDialog(null, "la categorie que vous avez mis dans le fichier n'existe pas dans le fichier Category.txt");
+               throw new Exception();
             }
             
             System.out.println(catbuf);
 
             //create the Question object
-            Question question = new Question(splitString[1], answer, catbuf, dif, splitString[9], splitString[11],false);
+            Question question = new Question(splitString[1], answer, found, dif, splitString[9], splitString[11],false);
 
             return question;
 
