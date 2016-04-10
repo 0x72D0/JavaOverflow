@@ -16,12 +16,13 @@ public class Question implements Serializable{
 
     // Attributs
     private ArrayList<String> reponses;
-    private String enonce,bonFeedBack,mauvaisFeedBack,category;
+    private String enonce,bonFeedBack,mauvaisFeedBack;
+    private Category category;
     short difficulty;
     boolean done;
     // Constructeurs
     
-    public Question(String unEnonce, ArrayList<String>desReponses,String category,short difficulty,String bonFeedBack,String mauvaisFeedBack,boolean done){
+    public Question(String unEnonce, ArrayList<String>desReponses,Category category,short difficulty,String bonFeedBack,String mauvaisFeedBack,boolean done){
     	
     	this.enonce = unEnonce;
     	this.reponses = desReponses;
@@ -112,7 +113,7 @@ public class Question implements Serializable{
      * retourne la categorie actuelle
      * @return category actuelle
      */
-    public String getCategory()
+    public Category getCategory()
     {
         return category;
     }
@@ -121,7 +122,7 @@ public class Question implements Serializable{
      * modifie la category
      * @param category nouvelle categorie
      */
-    public void setCategory(String category)
+    public void setCategory(Category category)
     {
         this.category = category;
     }
