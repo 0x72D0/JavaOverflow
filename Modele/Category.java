@@ -13,20 +13,23 @@ public class Category
 {
     private String name;
     private String ressource;
+    private short avgDiff;
     
     public Category()
     {
         this.name = "";
         this.ressource = "";
+        this.avgDiff = 1;
     }
     
-    public Category(String name, String ressource)
+    public Category(String name, String ressource,short diff)
     {
         this.name = name;
         this.ressource = ressource;
+        this.avgDiff = diff;
     }
     
-    public String getname()
+    public String getName()
     {
         return name;
     }
@@ -35,6 +38,11 @@ public class Category
     {
         return ressource;
     }
+    
+    public short getAvgDiff()
+    {
+		return avgDiff
+	}
     
     public void setName(String str)
     {

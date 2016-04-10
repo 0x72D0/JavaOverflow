@@ -27,7 +27,7 @@ public class JavaOverflow extends Application{
 
     public static Database database;
 	public static Question cwq; // cwq : current working question
-    
+    public static short userProgress=1;
     //
     // Constructors
     //
@@ -42,6 +42,7 @@ public class JavaOverflow extends Application{
 	public static void generateQuestion()
 	{
 		boolean allDone = true;
+		boolean catAllDone = true;
         
         for(Question q : database.getQuestions())
         {
@@ -50,6 +51,14 @@ public class JavaOverflow extends Application{
                 allDone = false;
                 break;
             }
+            
+            if(q.getCategory().getAvgDiff()==userProgress)
+            {
+				if(!q.isDone())
+					catAllDone=false;
+			}
+			if(!allDone&&!catAllDone)
+				break;
         }
         
         Random rand = new Random();
@@ -58,13 +67,16 @@ public class JavaOverflow extends Application{
             System.out.println("Toutes les questions ont étées réussies");
         else
         {
-            if(database.getQuestions().get(i).getDifficulty()==categoryLevel(database.getQuestions().get(i).getCategory().getname()))
-                if(!database.getQuestions().get(i).isDone())
-                    cwq = database.getQuestions().get(i);
-                else
-                    generateQuestion();
-            else
-                generateQuestion();
+			if(database.getQuestions().get(i).getCategory().getAvgDiff()==userProgress)
+				if(database.getQuestions().get(i).getDifficulty()==categoryLevel(database.getQuestions().get(i).getCategory()))
+					if(!database.getQuestions().get(i).isDone())
+						cwq = database.getQuestions().get(i);
+					else
+						generateQuestion();
+				else
+					generateQuestion();
+			else
+				generateQuestion();
         }
 	}
     
@@ -149,7 +161,7 @@ public class JavaOverflow extends Application{
 		return rep.matches(ans);
 	}
 	
-	public static short categoryLevel(String category)
+	public static short categoryLevel(Category category)
     {
         
         for(short level =1;level<101;level++)
@@ -157,7 +169,7 @@ public class JavaOverflow extends Application{
             for(Question q:database.getQuestions())
             {
                 if(q.getDifficulty()==level) {
-                    if(q.getCategory().equals(category)) {
+                    if(q.getCategory().getName().equals(category.getName())) {
 
                         if(!q.isDone()) {
                             return level;
