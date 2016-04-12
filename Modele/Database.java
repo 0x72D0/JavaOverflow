@@ -126,16 +126,17 @@ public class Database implements Serializable{
             }
             
             String buf = new String(buffer);
-            String[] cat = buf.split("$");
+            String[] cat = buf.split("\\r?\\n");
             System.out.println(cat.length-1);
             
-            for(int i = 0; i < (cat.length-1); i++)
+            for(int i = 0; i < (cat.length); i++)
             {
                 System.out.println(cat[i]);
                 String[] components = cat[i].split("\\\\");
                 System.out.println(components[0]);
                 System.out.println(components[1]);
-                Category catego = new Category(components[0], components[1]);
+                System.out.println(components[2]);
+                Category catego = new Category(components[0], components[1],Short.parseShort(components[2]));
                 category.add(catego);
             }
         }
@@ -222,7 +223,7 @@ public class Database implements Serializable{
 
             for(Category s:category)
             {
-                if(s.getname().equals(catbuf))
+                if(s.getName().equals(catbuf))
                 {
                     found = s;
                     break;
