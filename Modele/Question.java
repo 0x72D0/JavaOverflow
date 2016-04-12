@@ -15,6 +15,7 @@ import java.io.*;
 public class Question implements Serializable{
 
     // Attributs
+    private String name;
     private ArrayList<String> reponses;
     private String enonce,bonFeedBack,mauvaisFeedBack;
     private Category category;
@@ -22,8 +23,9 @@ public class Question implements Serializable{
     boolean done;
     // Constructeurs
     
-    public Question(String unEnonce, ArrayList<String>desReponses,Category category,short difficulty,String bonFeedBack,String mauvaisFeedBack,boolean done){
+    public Question(String name, String unEnonce, ArrayList<String>desReponses,Category category,short difficulty,String bonFeedBack,String mauvaisFeedBack,boolean done){
     	
+        this.name = name;
     	this.enonce = unEnonce;
     	this.reponses = desReponses;
         this.category = category;
@@ -152,6 +154,16 @@ public class Question implements Serializable{
     public void setDone(boolean done)
     {
         this.done=done;
+    }
+    
+    public void setName(String name)
+    {
+        this.name = name;
+    }
+    
+    public String getName()
+    {
+        return name;
     }
     
     /**

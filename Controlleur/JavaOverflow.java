@@ -11,8 +11,11 @@ import javafx.scene.control.Alert.AlertType;
 
 import java.util.*;
 import java.io.*;
+import java.awt.Desktop;
+import java.net.*;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import javax.swing.JOptionPane;
 
 /**
  * Class JavaOverflow
@@ -36,9 +39,10 @@ public class JavaOverflow extends Application{
     //
     // Methods
     //
-/**
- * Initialise la base de donne en chargeant les fichiers questions. 
- */
+    
+    /**
+    * Initialise la base de donne en chargeant les fichiers questions. 
+    */
 	public static void generateQuestion()
 	{
 		boolean allDone = true;
@@ -80,11 +84,69 @@ public class JavaOverflow extends Application{
         }
 	}
     
+    public void adminTryQuestionsPresence(String fileName)
+    {
+        try
+        {
+            String buf = "";
+            Question q = findQuestionFile(fileName);
+            buf = "question:\n" + q.getEnonce();
+            buf += "\nreponse:\n";
+            for(String str : q.getReponses())
+            {
+                buf += str + "\n";
+            }
+            buf += "\ncategorie:\n" + q.getCategory().getName() + "\n\ndifficulter:\n" + q.getDifficulty() +
+                "\n\nbon enoncer:\n" + q.getBonFeedBack() + "\n\nmauvais enoncer:\n" +q.getMauvaisFeedBack();
+            
+            JOptionPane.showMessageDialog(null, buf);
+        }
+        catch(Exception e)
+        {
+            e.printStackTrace();
+        }
+    }
+    
     /**
-     * formatte le String de la reponse et de la question pour tester leur egalite
-     * @param str1
-     * @return le string une fois formatter 
+     * allow the admin to check if the website is good 
+     * @param category 
      */
+    public void adminTryWebsite(String category)
+    {
+        try
+        {
+            ArrayList<Category> categories = database.getCategory();
+            Category cat = null;
+        
+            for(Category catego : categories)
+            {
+                if(catego.getName().equals(category))
+                {
+                    cat = catego;
+                    break;
+                }
+            }
+        
+            if(Desktop.isDesktopSupported())
+            {
+                Desktop.getDesktop().browse(new URI(cat.getRessource()));
+            }
+        }
+        catch(URISyntaxException e)
+        {
+            JOptionPane.showMessageDialog(null, "nous n'avons pas trouver l'URI");
+        }
+        catch(Exception e)
+        {
+            e.printStackTrace();
+        }
+    }
+    
+    /**
+    * formatte le String de la reponse et de la question pour tester leur egalite
+    * @param str1
+    * @return le string une fois formatter 
+    */
 	public static String formatString(String str1)
 	{
 		str1 = str1.toLowerCase();
@@ -190,6 +252,19 @@ public class JavaOverflow extends Application{
     //
     // Other methods
     //
+    
+    public Question findQuestionFile(String fileName)
+    {
+        for(Question q : database.getQuestions())
+        {
+            if(q.getName().equals(fileName))
+            {
+                return q;
+            }
+        }
+        
+        return null;
+    }
 
     public static void main(String[]args)
     {			
