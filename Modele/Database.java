@@ -83,7 +83,7 @@ public class Database implements Serializable{
                     }
 
                     //parse the string and put the Question Object created inside the array
-                    questions.add(parse(buffer.toString()));
+                    questions.add(parse(buffer.toString(), listeChemins[i].getName()));
                 }
             
                 else if(listeChemins[i].isDirectory()) 
@@ -198,7 +198,7 @@ public class Database implements Serializable{
      * @param buffer
      * 	String recevant le lecture du fichier
      */
-	public Question parse(String buffer) throws Exception
+	public Question parse(String buffer, String fileName) throws Exception
 	{
 
             String[] splitString = buffer.split("~");
@@ -240,7 +240,7 @@ public class Database implements Serializable{
             System.out.println(catbuf);
 
             //create the Question object
-            Question question = new Question(splitString[1], answer, found, dif, splitString[9], splitString[11],false);
+            Question question = new Question(fileName, splitString[1], answer, found, dif, splitString[9], splitString[11],false);
 
             return question;
 
