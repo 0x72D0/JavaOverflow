@@ -142,6 +142,8 @@ public class JavaOverflow extends Application{
 			if(rep.equals(ans))
 			{
 				cwq.setDone(true);
+                                database.getEleve().add(cwq.getDifficulty());
+                                System.out.println("vous avez "+database.getEleve().getPoints()+"points");
 				return true;
 			}
 		}
@@ -222,7 +224,19 @@ public class JavaOverflow extends Application{
 		
 		Optional<ButtonType> result = alert.showAndWait();
 		if (result.get() == ButtonType.OK)
-        {
+        {               try
+				{
+					Path currentRelativePath = Paths.get("");
+					File seri = new File(currentRelativePath.toAbsolutePath().toString()+File.separator+ "database.Jobj");
+					FileOutputStream fout = new FileOutputStream(seri);
+					ObjectOutputStream oos = new ObjectOutputStream(fout);
+					oos.writeObject(JavaOverflow.database);
+					oos.close();
+				}
+				catch(Exception e)
+				{
+					e.printStackTrace();
+				}
 			theStage.close();
 		}
 	}
