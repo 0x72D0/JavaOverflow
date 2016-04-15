@@ -17,6 +17,8 @@ public class Database implements Serializable{
 
 	private ArrayList<Question> questions = new ArrayList<Question>();
 	private ArrayList<Category> category = new ArrayList<Category>();
+        private User eleve;
+        private short essaisAvantAide; 
 	
 	/**
 	 * Constructeur de la Database
@@ -25,7 +27,8 @@ public class Database implements Serializable{
 	{
 		try
 		{
-            createCategories();
+                        this.essaisAvantAide =5;
+                        createCategories();
 			createObject();
 		}
 		catch (FileNotFoundException e) 
@@ -54,7 +57,7 @@ public class Database implements Serializable{
 	{
 		String q = null;
 		String a = null;
-			
+		eleve = new User();
 		//Cree le chemin des fichiers questions
 		Path currentRelativePath = Paths.get(""); 
 		File dir = new File(currentRelativePath.toAbsolutePath().toString()+File.separator+ "Questions");
@@ -183,6 +186,13 @@ public class Database implements Serializable{
     {
         return category;
     }
+    /**
+     * 
+     * @param essaisAvantAide new Value of essaisAvantAide
+     */
+    public void setEssaisAvantAide(short essaisAvantAide) {
+        this.essaisAvantAide = essaisAvantAide;
+    }
 
     /**
      * methode pour modifier la categorie de question
@@ -192,6 +202,32 @@ public class Database implements Serializable{
     {
         this.category = category;
     }
+    
+    /**
+     * 
+     * @return actual eleve object
+     */
+    public User getEleve()
+    {
+        return this.eleve;
+    }
+    
+    /**
+     * 
+     * @param newEleve new eleve object
+     */
+    public void setEleve(User newEleve)
+    {
+        this.eleve = newEleve;
+    }
+    
+    /**
+     * 
+     * @return  actual value of essai avant aide
+     */
+    public short getEssaisAvantAide(){return this.essaisAvantAide;}
+    
+    
     //parse the string
 	/**
 	 * méthode pour séparer les questions des réponses.

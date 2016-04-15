@@ -55,7 +55,12 @@ public class Game implements Initializable{
 			
 		}else
 		{
-			Alert alert = new Alert(AlertType.INFORMATION);
+                        JavaOverflow.database.getEleve().setNbreEssaiRate((short)(JavaOverflow.database.getEleve().getNbreEssaiRate()+1));
+			if(JavaOverflow.database.getEleve().getNbreEssaiRate()==JavaOverflow.database.getEssaisAvantAide())
+                        {
+                            //TODO
+                        }
+                        Alert alert = new Alert(AlertType.INFORMATION);
 			alert.setTitle("JavaOverflow");
 			alert.setHeaderText("Mauvaise reponse.");
 			alert.setContentText("Essaye encore.");
