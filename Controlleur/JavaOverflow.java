@@ -84,6 +84,11 @@ public class JavaOverflow extends Application{
         }
 	}
     
+    public void adminPassword(String password)
+    {
+        database.setPassword(password);
+    }
+    
     public void adminTryQuestionsPresence(String fileName)
     {
         try

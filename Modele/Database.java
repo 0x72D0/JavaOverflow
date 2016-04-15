@@ -17,8 +17,9 @@ public class Database implements Serializable{
 
 	private ArrayList<Question> questions = new ArrayList<Question>();
 	private ArrayList<Category> category = new ArrayList<Category>();
-        private User eleve;
-        private short essaisAvantAide; 
+    private User eleve;
+    private short essaisAvantAide;
+    private String password;
 	
 	/**
 	 * Constructeur de la Database
@@ -27,9 +28,10 @@ public class Database implements Serializable{
 	{
 		try
 		{
-                        this.essaisAvantAide =5;
-                        createCategories();
+            this.essaisAvantAide =5;
+            createCategories();
 			createObject();
+            this.password = "admin";
 		}
 		catch (FileNotFoundException e) 
 		{
@@ -192,6 +194,16 @@ public class Database implements Serializable{
      */
     public void setEssaisAvantAide(short essaisAvantAide) {
         this.essaisAvantAide = essaisAvantAide;
+    }
+
+    public String getPassword() 
+    {
+        return password;
+    }
+
+    public void setPassword(String password) 
+    {
+        this.password = password;
     }
 
     /**
