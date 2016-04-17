@@ -58,7 +58,17 @@ public class Game implements Initializable{
                         JavaOverflow.database.getEleve().setNbreEssaiRate((short)(JavaOverflow.database.getEleve().getNbreEssaiRate()+1));
 			if(JavaOverflow.database.getEleve().getNbreEssaiRate()==JavaOverflow.database.getEssaisAvantAide())
                         {
-                            //TODO
+                            try
+                            {
+                            	if(Desktop.isDesktopSupported())
+            			{
+                			Desktop.getDesktop().browse(new URI(cwq.getCategory().getRessource()));
+            		        }
+                            }
+                            catch(URISyntaxException e)
+			    {
+			    	JOptionPane.showMessageDialog(null, "nous n'avons pas trouver l'URI");
+			    }
                         }
                         Alert alert = new Alert(AlertType.INFORMATION);
 			alert.setTitle("JavaOverflow");
