@@ -209,8 +209,8 @@ public class JavaOverflow extends Application{
 			if(rep.equals(ans))
 			{
 				cwq.setDone(true);
-                                database.getEleve().add(cwq.getDifficulty());
-                                System.out.println("vous avez "+database.getEleve().getPoints()+"points");
+                database.getEleve().add(cwq.getDifficulty());
+                System.out.println("vous avez "+database.getEleve().getPoints()+"points");
 				return true;
 			}
 		}
@@ -238,9 +238,10 @@ public class JavaOverflow extends Application{
             for(Question q:database.getQuestions())
             {
                 if(q.getDifficulty()==level) {
-                    if(q.getCategory().getName().equals(category.getName())) {
-
-                        if(!q.isDone()) {
+                    if(q.getCategory().getName().equals(category.getName())) 
+                    {
+                        if(!q.isDone()) 
+                        {
                             return level;
                         }
 
