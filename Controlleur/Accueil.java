@@ -1,5 +1,7 @@
 package Controlleur;
 
+import Vue.*;
+
 import java.util.Optional;
 import java.util.ResourceBundle;
 
@@ -27,8 +29,9 @@ import javafx.fxml.Initializable;
 
 public class Accueil implements Initializable{
 	
-	@FXML Button btCommencer,btOptions,btGenererQ,btQuitter;
-	private String password = "kfc";
+	@FXML Button btCommencer,btOptions,btGenererQ,btQuitter,btAdministrateur;
+	
+	//private String password = "kfc";
 	@Override
 	public void  initialize(URL location, ResourceBundle resources){
 		
@@ -46,23 +49,9 @@ public class Accueil implements Initializable{
 			ObjectInputStream ois = new ObjectInputStream(fin);
 			JavaOverflow.database = (Database) ois.readObject();
 			System.out.println(JavaOverflow.database.getCategory().size());
-		
-			Stage currentStage = (Stage)btCommencer.getScene().getWindow();
-			currentStage.hide();
 			
-			Parent root = FXMLLoader.load(getClass().getResource("/Vue/Game.fxml"));
-			Scene scene = new Scene(root, 600,400);
-			
-			Stage gameStage = new Stage();
-			gameStage.setTitle("JavaOverflow");
-			gameStage.setScene(scene);
-			gameStage.show();
-			
-			gameStage.setOnCloseRequest(e ->{
-				e.consume();
-				JavaOverflow.closeProgram(gameStage);
-			});
-			
+			launchPane("/Vue/Game.fxml","JavaOverflow",1,755,500);
+
 		}catch(Exception e){
 			e.printStackTrace();
 		}
@@ -71,14 +60,50 @@ public class Accueil implements Initializable{
 	
 	public void handlerOptions(ActionEvent event)
 	{
-		Alert alert = new Alert(AlertType.WARNING);
-		alert.setTitle("Oops!");
+		/*Alert alert = new Alert(AlertType.WARNING);
+		alert.setTitle("JavaOverflow");
 		alert.setHeaderText("Attention");
 		alert.setContentText("Cette option n'est pas disponible dans cette version.");
-		alert.showAndWait(); 
+		alert.showAndWait(); */
+		try{
+			launchPane("/Vue/Option.fxml","JavaOverflow - Options",0,450,480);
+			
+		}catch(Exception e){
+			e.printStackTrace();
+		}
+		
 	}
 	
 	public void handleGenererQ(ActionEvent event)
+	{
+		
+		try
+		{
+			JavaOverflow.database = new Database();
+			Path currentRelativePath = Paths.get("");
+			File seri = new File(currentRelativePath.toAbsolutePath().toString()+File.separator+ "database.Jobj");
+			FileOutputStream fout = new FileOutputStream(seri);
+			ObjectOutputStream oos = new ObjectOutputStream(fout);
+			oos.writeObject(JavaOverflow.database);
+			oos.close();
+			
+			Alert alert = new Alert(AlertType.INFORMATION,"Operation Reussi");
+			alert.setHeaderText("Creation questions");
+			alert.showAndWait();
+		}
+		catch(Exception e)
+		{
+			e.printStackTrace();
+		}
+		
+		
+		
+		
+
+	}
+	
+	
+	public void handlerAdministrateur(ActionEvent event)
 	{
 		TextInputDialog dialog = new TextInputDialog("");
 		dialog.setTitle("Mot de passe");
@@ -88,33 +113,53 @@ public class Accueil implements Initializable{
 		
 		if(result.isPresent())
 		{
-			if(result.get().equals(password)){
-				try
-				{
-					JavaOverflow.database = new Database();
-					Path currentRelativePath = Paths.get("");
-					File seri = new File(currentRelativePath.toAbsolutePath().toString()+File.separator+ "database.Jobj");
-					FileOutputStream fout = new FileOutputStream(seri);
-					ObjectOutputStream oos = new ObjectOutputStream(fout);
-					oos.writeObject(JavaOverflow.database);
-					oos.close();
-				}
-				catch(Exception e)
-				{
+			if(result.get().equals(JavaOverflow.pw)){
+
+				
+				try {
+					launchPane("/Vue/Administrateur.fxml","JavaOverflow - Admin",0,500,400);
+				} catch (IOException e) {
 					e.printStackTrace();
 				}
+				
+				
 			}else{
-				Alert alert = new Alert(AlertType.WARNING);
+				Alert alert = new Alert(AlertType.WARNING,"Mot de passe incorrect!");
 				alert.setTitle("JavaOverflow");
 				alert.setHeaderText("Attention");
-				alert.setContentText("Mot de passe incorrect!");
 				alert.showAndWait();
 			}
 		}
+		
 	}
+	
 	
 	public void handlerQuitter(ActionEvent event)
 	{
 		JavaOverflow.closeProgram((Stage)btQuitter.getScene().getWindow());
 	}
+	
+	void launchPane(String ressourcePath,String paneTitle,int mode,int sizex,int sizey) throws IOException
+	{
+		Stage currentStage = (Stage)btCommencer.getScene().getWindow();
+		if(mode==1){
+			currentStage.hide();
+		}
+		
+		Parent root = FXMLLoader.load(getClass().getResource(ressourcePath));
+		
+		Scene scene = new Scene(root,sizex,sizey);
+		
+		
+		Stage gameStage = new Stage();
+		gameStage.setTitle(paneTitle);
+		gameStage.setScene(scene);
+		gameStage.show();
+		
+		gameStage.setOnCloseRequest(e ->{
+			e.consume();
+			JavaOverflow.closeProgram(gameStage);
+		});
+	}
+	
 }
