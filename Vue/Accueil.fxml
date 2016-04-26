@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.text.*?>
 <?import javafx.scene.paint.*?>
 <?import javafx.scene.*?>
 <?import javafx.scene.effect.*?>
@@ -8,20 +9,36 @@
 <?import java.lang.*?>
 <?import javafx.scene.layout.*?>
 
-<VBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" spacing="10.0" stylesheets="@gStyle.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controlleur.Accueil">
+<VBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="755.0" spacing="15.0" style="-fx-background-color: #292929;" stylesheets="@gStyle.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controlleur.Accueil">
    <children>
-      <Button fx:id="btCommencer" defaultButton="true" mnemonicParsing="false" onAction="#handlerCommencer" text="Commencer">
+      <HBox alignment="BOTTOM_CENTER">
+         <children>
+            <Text fill="#e18c50" strokeType="OUTSIDE" strokeWidth="0.0" text="{} Java" textAlignment="CENTER">
+               <font>
+                  <Font size="65.0" />
+               </font>
+            </Text>
+            <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="| Overflow">
+               <font>
+                  <Font size="56.0" />
+               </font>
+            </Text>
+         </children>
+      </HBox>
+      <Separator opacity="0.61" prefWidth="200.0" />
+      <Button fx:id="btCommencer" defaultButton="true" mnemonicParsing="false" onAction="#handlerCommencer" prefHeight="40.0" prefWidth="171.0" text="Commencer">
          <cursor>
             <Cursor fx:constant="HAND" />
          </cursor>
       </Button>
-      <Button fx:id="btOptions" mnemonicParsing="false" onAction="#handlerOptions" text="Options">
+      <Button fx:id="btOptions" mnemonicParsing="false" onAction="#handlerOptions" prefHeight="40.0" prefWidth="171.0" text="Options">
          <cursor>
             <Cursor fx:constant="HAND" />
          </cursor>
       </Button>
-      <Button fx:id="btGenererQ" mnemonicParsing="false" onAction="#handleGenererQ" text="Generer Question" />
-      <Button fx:id="btQuitter" mnemonicParsing="false" onAction="#handlerQuitter" text="Quitter">
+      <Button fx:id="btGenererQ" mnemonicParsing="false" onAction="#handleGenererQ" prefHeight="41.0" prefWidth="171.0" text="Generer Question" />
+      <Button fx:id="btAdministrateur" mnemonicParsing="false" onAction="#handlerAdministrateur" prefHeight="40.0" prefWidth="171.0" text="Administrateur" />
+      <Button fx:id="btQuitter" mnemonicParsing="false" onAction="#handlerQuitter" prefHeight="40.0" prefWidth="171.0" text="Quitter">
          <cursor>
             <Cursor fx:constant="HAND" />
          </cursor>

@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.*?>
+<?import javafx.scene.text.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<TabPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="500.0" tabClosingPolicy="UNAVAILABLE" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controlleur.Administrateur">
+  <tabs>
+    <Tab text="Admin">
+         <content>
+            <AnchorPane prefHeight="200.0" prefWidth="200.0">
+               <padding>
+                  <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+               </padding>
+               <children>
+                  <Label layoutX="80.0" layoutY="87.0" text="Mot de passe :" />
+                  <Label layoutX="80.0" layoutY="134.0" text="Confirmer :" />
+                  <PasswordField fx:id="tfPassword" layoutX="228.0" layoutY="82.0" />
+                  <PasswordField fx:id="tfConfirmer" layoutX="228.0" layoutY="129.0" />
+                  <Button fx:id="btAppliquerA" layoutX="328.0" layoutY="291.0" mnemonicParsing="false" onAction="#handlerBtAppliquerA" text="Appliquer" />
+                  <Separator layoutX="128.0" layoutY="64.0" prefWidth="200.0" />
+                  <Label layoutX="154.0" layoutY="30.0" text="Changer mot de passe" />
+               </children>
+            </AnchorPane>
+         </content>
+    </Tab>
+      <Tab text="Config">
+        <content>
+          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+               <children>
+                  <Button fx:id="btAppliquerC" layoutX="345.0" layoutY="288.0" mnemonicParsing="false" onAction="#handlerbtAppliquerC" text="Appliquer" />
+                  <TextField fx:id="tfCategorie" layoutX="158.0" layoutY="103.0" promptText="Categorie" />
+                  <Separator layoutX="151.0" layoutY="74.0" prefWidth="200.0" />
+                  <Label layoutX="218.0" layoutY="42.0" text="Categorie" />
+               </children></AnchorPane>
+        </content>
+      </Tab>
+    <Tab text="Debug">
+      <content>
+        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+               <children>
+                  <Label layoutX="195.0" layoutY="39.0" text="Verifier question" />
+                  <Separator layoutX="150.0" layoutY="71.0" prefWidth="200.0" />
+                  <TextField fx:id="tfQuestion" layoutX="157.0" layoutY="98.0" promptText="Question" />
+                  <Button fx:id="btVerifier" layoutX="344.0" layoutY="284.0" mnemonicParsing="false" onAction="#handlerbtVerifier" text="Verifier" />
+               </children></AnchorPane>
+      </content>
+    </Tab>
+  </tabs>
+</TabPane>
