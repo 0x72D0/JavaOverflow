@@ -31,6 +31,7 @@ public class JavaOverflow extends Application{
     public static Database database;
 	public static Question cwq; // cwq : current working question
     public static short userProgress=1;
+    public static boolean confirmClose = true;
     //
     // Constructors
     //
@@ -84,12 +85,12 @@ public class JavaOverflow extends Application{
         }
 	}
     
-    public void adminPassword(String password)
+    public static void adminPassword(String password)
     {
         database.setPassword(password);
     }
     
-    public void adminTryQuestionsPresence(String fileName)
+    public static void adminTryQuestionsPresence(String fileName)
     {
         try
         {
@@ -116,12 +117,13 @@ public class JavaOverflow extends Application{
      * allow the admin to check if the website is good 
      * @param category 
      */
-    public void adminTryWebsite(String category)
+    public static void adminTryWebsite(String category)
     {
         try
         {
             ArrayList<Category> categories = database.getCategory();
             Category cat = null;
+            int i = 0;
         
             for(Category catego : categories)
             {
@@ -130,16 +132,25 @@ public class JavaOverflow extends Application{
                     cat = catego;
                     break;
                 }
+                else
+                {
+                    i++;
+                }
+            }
+            
+            if(i==categories.size())
+            {
+                JOptionPane.showMessageDialog(null, "la category n'a pas ete trouver");
             }
         
             if(Desktop.isDesktopSupported())
             {
                 Desktop.getDesktop().browse(new URI(cat.getRessource()));
             }
-        }
-        catch(URISyntaxException e)
-        {
-            JOptionPane.showMessageDialog(null, "nous n'avons pas trouver l'URI");
+            else
+            {
+                JOptionPane.showMessageDialog(null, "le desktop n'est pas supporter par Java");
+            }
         }
         catch(Exception e)
         {
@@ -261,7 +272,7 @@ public class JavaOverflow extends Application{
     // Other methods
     //
     
-    public Question findQuestionFile(String fileName)
+    public static Question findQuestionFile(String fileName)
     {
         for(Question q : database.getQuestions())
         {
@@ -280,6 +291,21 @@ public class JavaOverflow extends Application{
     }
     
 	public void start(Stage primaryStage) throws Exception {
+        
+        try
+		{
+			Path currentRelativePath = Paths.get("");
+			File seri = new File(currentRelativePath.toAbsolutePath().toString()+File.separator+ "database.Jobj");
+			FileInputStream fin = new FileInputStream(seri);
+			ObjectInputStream ois = new ObjectInputStream(fin);
+			JavaOverflow.database = (Database) ois.readObject();
+			System.out.println(JavaOverflow.database.getCategory().size());
+
+		}
+        catch(Exception e)
+        {
+			e.printStackTrace();
+		}
 		
 		Parent root = FXMLLoader.load(getClass().getResource("/Vue/Accueil.fxml"));
 		
@@ -297,15 +323,16 @@ public class JavaOverflow extends Application{
 	}
 	
 	public static void closeProgram(Stage theStage){
-		
-		Alert alert = new Alert(AlertType.CONFIRMATION);
-		alert.setTitle("Fermeture");
-		alert.setHeaderText("Fermeture du programme");
-		alert.setContentText("Etes-vous sur de vouloir fermer?");
-		
-		Optional<ButtonType> result = alert.showAndWait();
+        if(confirmClose)
+        {
+            Alert alert = new Alert(AlertType.CONFIRMATION);
+            alert.setTitle("Fermeture");
+            alert.setHeaderText("Fermeture du programme");
+            alert.setContentText("Etes-vous sur de vouloir fermer?");
+            Optional<ButtonType> result = alert.showAndWait();
 		if (result.get() == ButtonType.OK)
-        {               try
+        {       
+                try
 				{
 					Path currentRelativePath = Paths.get("");
 					File seri = new File(currentRelativePath.toAbsolutePath().toString()+File.separator+ "database.Jobj");
@@ -320,6 +347,24 @@ public class JavaOverflow extends Application{
 				}
 			theStage.close();
 		}
+        }
+        else
+        {
+            try
+				{
+					Path currentRelativePath = Paths.get("");
+					File seri = new File(currentRelativePath.toAbsolutePath().toString()+File.separator+ "database.Jobj");
+					FileOutputStream fout = new FileOutputStream(seri);
+					ObjectOutputStream oos = new ObjectOutputStream(fout);
+					oos.writeObject(JavaOverflow.database);
+					oos.close();
+				}
+				catch(Exception e)
+				{
+					e.printStackTrace();
+				}
+			theStage.close();
+        }
 	}
 	
 

@@ -41,21 +41,7 @@ public class Accueil implements Initializable{
 	
 	public void handlerCommencer(ActionEvent event) throws IOException
 	{
-		try
-		{
-			Path currentRelativePath = Paths.get("");
-			File seri = new File(currentRelativePath.toAbsolutePath().toString()+File.separator+ "database.Jobj");
-			FileInputStream fin = new FileInputStream(seri);
-			ObjectInputStream ois = new ObjectInputStream(fin);
-			JavaOverflow.database = (Database) ois.readObject();
-			System.out.println(JavaOverflow.database.getCategory().size());
-			
-			launchPane("/Vue/Game.fxml","JavaOverflow",1,755,500);
-
-		}catch(Exception e){
-			e.printStackTrace();
-		}
-
+        launchPane("/Vue/Game.fxml","JavaOverflow",1,755,500);
 	}
 	
 	public void handlerOptions(ActionEvent event)
@@ -95,11 +81,6 @@ public class Accueil implements Initializable{
 		{
 			e.printStackTrace();
 		}
-		
-		
-		
-		
-
 	}
 	
 	
@@ -113,7 +94,7 @@ public class Accueil implements Initializable{
 		
 		if(result.isPresent())
 		{
-			if(result.get().equals(JavaOverflow.pw)){
+			if(result.get().equals(JavaOverflow.database.getPassword())){
 
 				
 				try {
@@ -121,9 +102,9 @@ public class Accueil implements Initializable{
 				} catch (IOException e) {
 					e.printStackTrace();
 				}
-				
-				
-			}else{
+			}
+            else
+            {
 				Alert alert = new Alert(AlertType.WARNING,"Mot de passe incorrect!");
 				alert.setTitle("JavaOverflow");
 				alert.setHeaderText("Attention");

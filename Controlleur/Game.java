@@ -1,7 +1,10 @@
 package Controlleur;
 
+import java.awt.Desktop;
 import java.util.ResourceBundle;
 import java.io.IOException;
+import java.net.URI;
+import java.net.URISyntaxException;
 import java.net.URL;
 
 import javafx.stage.Stage;
@@ -15,6 +18,7 @@ import javafx.scene.control.Alert.AlertType;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
 import javafx.fxml.Initializable;
+import javax.swing.JOptionPane;
 
 public class Game implements Initializable{
 
@@ -39,7 +43,7 @@ public class Game implements Initializable{
 		this.currentStage = theStage;
 	}
 	
-	public void btConfirmerHandler(ActionEvent event){
+	public void btConfirmerHandler(ActionEvent event) throws IOException{
 		
 		if(JavaOverflow.verifyStringAnswer(fieldReponse.getText())){
 			
@@ -62,7 +66,7 @@ public class Game implements Initializable{
                             {
                             	if(Desktop.isDesktopSupported())
             			{
-                			Desktop.getDesktop().browse(new URI(cwq.getCategory().getRessource()));
+                			Desktop.getDesktop().browse(new URI(JavaOverflow.cwq.getCategory().getRessource()));
             		        }
                             }
                             catch(URISyntaxException e)
