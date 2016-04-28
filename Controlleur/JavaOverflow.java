@@ -138,13 +138,14 @@ public class JavaOverflow extends Application{
                 }
             }
             
-            if(i==categories.size())
+            if(i == categories.size())
             {
                 JOptionPane.showMessageDialog(null, "la category n'a pas ete trouver");
             }
         
             if(Desktop.isDesktopSupported())
             {
+                System.out.println(cat.getRessource());
                 Desktop.getDesktop().browse(new URI(cat.getRessource()));
             }
             else
@@ -238,6 +239,8 @@ public class JavaOverflow extends Application{
      */
 	public static boolean verifyFormatAnswer(String rep, String ans)
 	{
+        cwq.setDone(true);
+        database.getEleve().add(cwq.getDifficulty());
 		return rep.matches(ans);
 	}
 	

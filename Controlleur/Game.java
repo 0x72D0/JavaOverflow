@@ -69,7 +69,7 @@ public class Game implements Initializable{
                 			Desktop.getDesktop().browse(new URI(JavaOverflow.cwq.getCategory().getRessource()));
             		        }
                             }
-                            catch(URISyntaxException e)
+                catch(URISyntaxException e)
 			    {
 			    	JOptionPane.showMessageDialog(null, "nous n'avons pas trouver l'URI");
 			    }
