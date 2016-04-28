@@ -27,6 +27,7 @@ import javafx.scene.control.*;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.text.Text;
 import javafx.fxml.Initializable;
+import javax.swing.JOptionPane;
 
 public class Administrateur implements Initializable{
 	
@@ -41,17 +42,21 @@ public class Administrateur implements Initializable{
 	//Bouton admin
 	public void handlerBtAppliquerA(ActionEvent event)
 	{
-		
-		
+        if(tfPassword.getText().equals(tfConfirmer.getText()))
+        {
+            JavaOverflow.adminPassword(tfPassword.getText());
+        }
+        else
+        {
+            JOptionPane.showMessageDialog(null, "les mots de passe ne sont pas identique");
+        }
 	}
 	//Bouton Categorie
 	public void handlerbtAppliquerC(ActionEvent event){
-		
-		
+		JavaOverflow.adminTryWebsite(tfCategorie.getText());	
 	}
 	public void handlerbtVerifier(ActionEvent event){
-		
-		
+		JavaOverflow.adminTryQuestionsPresence(tfQuestion.getText());
 	}
 	
 	

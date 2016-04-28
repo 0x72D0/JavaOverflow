@@ -28,7 +28,7 @@ public class Database implements Serializable{
 	{
 		try
 		{
-            this.essaisAvantAide =5;
+            this.essaisAvantAide = 5;
             createCategories();
 			createObject();
             this.password = "admin";
