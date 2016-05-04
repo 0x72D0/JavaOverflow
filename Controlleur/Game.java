@@ -59,8 +59,8 @@ public class Game implements Initializable{
 			
 		}else
 		{
-                        JavaOverflow.database.getEleve().setNbreEssaiRate((short)(JavaOverflow.database.getEleve().getNbreEssaiRate()+1));
-			if(JavaOverflow.database.getEleve().getNbreEssaiRate()==JavaOverflow.database.getEssaisAvantAide())
+                        JavaOverflow.cs.setNbreEssaiRate((short)(JavaOverflow.cs.getNbreEssaiRate()+1));
+			if(JavaOverflow.cs.getNbreEssaiRate()==JavaOverflow.database.getEssaisAvantAide())
                         {
                             try
                             {

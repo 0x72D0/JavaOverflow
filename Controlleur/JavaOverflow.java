@@ -16,6 +16,7 @@ import java.net.*;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import javax.swing.JOptionPane;
+import java.security.*;
 
 /**
  * Class JavaOverflow
@@ -32,6 +33,8 @@ public class JavaOverflow extends Application{
 	public static Question cwq; // cwq : current working question
     public static short userProgress=1;
     public static boolean confirmClose = true;
+    public static ArrayList<User> eleves;
+    public static User cs;
     //
     // Constructors
     //
@@ -221,8 +224,8 @@ public class JavaOverflow extends Application{
 			if(rep.equals(ans))
 			{
 				cwq.setDone(true);
-                database.getEleve().add(cwq.getDifficulty());
-                System.out.println("vous avez "+database.getEleve().getPoints()+"points");
+                cs.add(cwq.getDifficulty());
+                System.out.println("vous avez " + cs.getPoints()+"points");
 				return true;
 			}
 		}
@@ -240,7 +243,7 @@ public class JavaOverflow extends Application{
 	public static boolean verifyFormatAnswer(String rep, String ans)
 	{
         cwq.setDone(true);
-        database.getEleve().add(cwq.getDifficulty());
+        cs.add(cwq.getDifficulty());
 		return rep.matches(ans);
 	}
 	
@@ -264,6 +267,74 @@ public class JavaOverflow extends Application{
             }
         }
         return 100;
+    }
+    
+    public static void createEleves()
+    {
+        Path currentRelativePath = Paths.get("");
+        File dir = new File(currentRelativePath.toAbsolutePath().toString()+File.separator+ "User");
+        File[] listeChemins = dir.listFiles();
+
+        for(int i = 0; i < listeChemins.length; i++)
+        {
+            try
+            {
+                if(listeChemins[i].isFile())
+                {	
+                    FileInputStream fin = new FileInputStream(listeChemins[i]);
+                    ObjectInputStream ois = new ObjectInputStream(fin);
+                    JavaOverflow.eleves.add((User) ois.readObject());
+                }
+            }
+            catch(FileNotFoundException e)
+            {
+                e.printStackTrace();
+            }
+            catch(IOException e)
+            {
+                e.printStackTrace();
+            }
+            catch(ClassNotFoundException e)
+            {
+                e.printStackTrace();
+            }
+        }
+    }
+    
+    public static void saveEleves()
+    {
+        Path currentRelativePath = Paths.get("");
+        File dir = new File(currentRelativePath.toAbsolutePath().toString() + File.separator + "User");
+        int x = 0;
+        for(User save : eleves)
+        {
+            try
+            {
+                File eleve = new File(dir + File.separator + x);
+                FileOutputStream fout = new FileOutputStream(eleve);
+				ObjectOutputStream oos = new ObjectOutputStream(fout);
+                oos.writeObject(save);
+				oos.close();
+            }
+            catch(Exception e)
+            {
+                e.printStackTrace();
+            }
+        }
+    }
+    
+    public static void setCs(String userMdp)
+    {
+        for(User save : eleves)
+        {
+            if(save.getMdp().equals(userMdp))
+            {
+                cs = save;
+                return;
+            }
+        }
+        eleves.add(new User(userMdp));
+        cs = eleves.get(eleves.size()-1);
     }
 
     //
@@ -303,6 +374,8 @@ public class JavaOverflow extends Application{
 			ObjectInputStream ois = new ObjectInputStream(fin);
 			JavaOverflow.database = (Database) ois.readObject();
 			System.out.println(JavaOverflow.database.getCategory().size());
+            
+            createEleves();
 
 		}
         catch(Exception e)

@@ -17,7 +17,6 @@ public class Database implements Serializable{
 
 	private ArrayList<Question> questions = new ArrayList<Question>();
 	private ArrayList<Category> category = new ArrayList<Category>();
-    private User eleve;
     private short essaisAvantAide;
     private String password;
 	
@@ -59,7 +58,6 @@ public class Database implements Serializable{
 	{
 		String q = null;
 		String a = null;
-		eleve = new User();
 		//Cree le chemin des fichiers questions
 		Path currentRelativePath = Paths.get(""); 
 		File dir = new File(currentRelativePath.toAbsolutePath().toString()+File.separator+ "Questions");
@@ -213,24 +211,6 @@ public class Database implements Serializable{
     public void setCategory(ArrayList<Category> category) 
     {
         this.category = category;
-    }
-    
-    /**
-     * 
-     * @return actual eleve object
-     */
-    public User getEleve()
-    {
-        return this.eleve;
-    }
-    
-    /**
-     * 
-     * @param newEleve new eleve object
-     */
-    public void setEleve(User newEleve)
-    {
-        this.eleve = newEleve;
     }
     
     /**

@@ -72,7 +72,7 @@ public class Question implements Serializable{
 	//Methodes
 	/**
 	 *accesseur pour retourner la réponse d'une question
-	 * @para<<<<<<< HEADm pos
+	 * @param pos position
 	 */
 	public String getAnswerX(int pos){
 		return reponses.get(pos);

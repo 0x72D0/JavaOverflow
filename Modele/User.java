@@ -28,8 +28,14 @@ public class User implements Serializable{
         this.difficulty = new Category();
         this.nbreEssaiRate = 0;
         this.mdp ="";
-        
-        
+    }
+    
+    public User(String mdp)
+    {
+        this.points = 0;
+        this.difficulty = new Category();
+        this.nbreEssaiRate = 0;
+        this.mdp = mdp;
     }
     
     /**

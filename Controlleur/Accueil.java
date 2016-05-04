@@ -1,6 +1,7 @@
 package Controlleur;
 
 import Vue.*;
+import Modele.*;
 
 import java.util.Optional;
 import java.util.ResourceBundle;
@@ -41,6 +42,7 @@ public class Accueil implements Initializable{
 	
 	public void handlerCommencer(ActionEvent event) throws IOException
 	{
+        JavaOverflow.cs = new User();
         launchPane("/Vue/Game.fxml","JavaOverflow",1,755,500);
 	}
 	
