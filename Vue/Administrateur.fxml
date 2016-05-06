@@ -28,18 +28,18 @@
             </AnchorPane>
          </content>
     </Tab>
-      <Tab text="Config">
+      <Tab text="Web">
         <content>
           <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                <children>
                   <Button fx:id="btAppliquerC" layoutX="345.0" layoutY="288.0" mnemonicParsing="false" onAction="#handlerbtAppliquerC" text="Appliquer" />
-                  <TextField fx:id="tfCategorie" layoutX="158.0" layoutY="103.0" promptText="Categorie" />
+                  <TextField fx:id="tfCategorie" layoutX="158.0" layoutY="103.0" promptText="Nom de categorie" />
                   <Separator layoutX="151.0" layoutY="74.0" prefWidth="200.0" />
-                  <Label layoutX="218.0" layoutY="42.0" text="Categorie" />
+                  <Label layoutX="61.0" layoutY="39.0" text="Rentrer le nom d'une categorie pour afficher le site web" textAlignment="CENTER" />
                </children></AnchorPane>
         </content>
       </Tab>
-    <Tab text="Debug">
+    <Tab text="Questions">
       <content>
         <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                <children>
