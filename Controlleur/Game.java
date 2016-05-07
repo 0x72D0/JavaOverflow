@@ -1,5 +1,6 @@
 package Controlleur;
 
+import Controlleur.JavaOverflow;
 import java.awt.Desktop;
 import java.util.ResourceBundle;
 import java.io.IOException;
@@ -23,11 +24,12 @@ import javax.swing.JOptionPane;
 public class Game implements Initializable{
 
 	@FXML TextField fieldReponse;
-	@FXML Button btConfirmer,btSuivant;
+	@FXML Button btConfirmer;
 	@FXML TextArea textArea;
 	@FXML Menu menuFichier,menuEdition,menuAide;
 	@FXML MenuItem itemFermer,itemCopier,itemAide;
 	@FXML BorderPane borderPane;
+	@FXML Label scoreLabel;
 	
 	private Stage currentStage;
 	
@@ -36,6 +38,7 @@ public class Game implements Initializable{
 
 		JavaOverflow.generateQuestion();
 		textArea.setText(JavaOverflow.cwq.getEnonce());
+		scoreLabel.setText("Score: "+JavaOverflow.cs.getPoints());
 	}
 	
 	public void setStage(Stage theStage)
@@ -56,6 +59,7 @@ public class Game implements Initializable{
 			JavaOverflow.generateQuestion();
 			textArea.setText(JavaOverflow.cwq.getEnonce());
 			fieldReponse.setText("");
+			scoreLabel.setText("Score: "+JavaOverflow.cs.getPoints());
 			
 		}else
 		{
