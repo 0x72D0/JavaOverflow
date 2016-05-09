@@ -358,10 +358,72 @@ public class JavaOverflow extends Application{
         
         return null;
     }
+    
+    public static String aide_utilisateur()
+    {
+        try
+        {
+            Path currentRelativePath = Paths.get(""); 
+            File categoryFile = new File(currentRelativePath.toAbsolutePath().toString()+File.separator+ "aide.txt");
+
+            BufferedReader read = new BufferedReader(new FileReader(categoryFile));
+            StringBuffer buffer = new StringBuffer();
+            String line = null;
+
+            // put the entire file inside a string
+            while((line = read.readLine()) != null)
+            {
+                buffer.append(line);
+                buffer.append("\n");
+            }
+            String str = new String(buffer);
+            return str;
+        }
+        catch(FileNotFoundException e)
+        {
+            JOptionPane.showMessageDialog(null, "le fichier d'aide n'a pas ete trouver");
+        }
+        catch(Exception e)
+        {
+            e.printStackTrace();
+        }
+        return null;
+    }
+    
+    public static String aide_adminstrateur()
+    {
+        try
+        {
+            Path currentRelativePath = Paths.get(""); 
+            File categoryFile = new File(currentRelativePath.toAbsolutePath().toString()+File.separator+ "aide_admin.txt");
+
+            BufferedReader read = new BufferedReader(new FileReader(categoryFile));
+            StringBuffer buffer = new StringBuffer();
+            String line = null;
+
+            // put the entire file inside a string
+            while((line = read.readLine()) != null)
+            {
+                buffer.append(line);
+                buffer.append("\n");
+            }
+            String str = new String(buffer);
+            return str;
+        }
+        catch(FileNotFoundException e)
+        {
+            JOptionPane.showMessageDialog(null, "le fichier d'aide n'a pas ete trouver");
+        }
+        catch(Exception e)
+        {
+            e.printStackTrace();
+        }
+        return null;
+    }
 
     public static void main(String[]args)
     {			
-			launch(args); //Lance JavaFx
+		launch(args); //Lance JavaFx
     }
     
 	public void start(Stage primaryStage) throws Exception {
@@ -441,7 +503,5 @@ public class JavaOverflow extends Application{
 				}
 			theStage.close();
         }
-	}
-	
-
+    }
 }
