@@ -21,9 +21,10 @@
                   <Label layoutX="80.0" layoutY="134.0" text="Confirmer :" />
                   <PasswordField fx:id="tfPassword" layoutX="228.0" layoutY="82.0" />
                   <PasswordField fx:id="tfConfirmer" layoutX="228.0" layoutY="129.0" />
-                  <Button fx:id="btAppliquerA" layoutX="328.0" layoutY="291.0" mnemonicParsing="false" onAction="#handlerBtAppliquerA" text="Appliquer" />
+                  <Button fx:id="btAppliquerA" layoutX="375.0" layoutY="294.0" mnemonicParsing="false" onAction="#handlerBtAppliquerA" text="Appliquer" />
                   <Separator layoutX="128.0" layoutY="64.0" prefWidth="200.0" />
                   <Label layoutX="154.0" layoutY="30.0" text="Changer mot de passe" />
+                  <Button fx:id="aide_admin" layoutX="290.0" layoutY="294.0" mnemonicParsing="false" onAction="#aide_handle" text="Aide" />
                </children>
             </AnchorPane>
          </content>
@@ -32,10 +33,11 @@
         <content>
           <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                <children>
-                  <Button fx:id="btAppliquerC" layoutX="345.0" layoutY="288.0" mnemonicParsing="false" onAction="#handlerbtAppliquerC" text="Appliquer" />
+                  <Button fx:id="btAppliquerC" layoutX="387.0" layoutY="288.0" mnemonicParsing="false" onAction="#handlerbtAppliquerC" text="Appliquer" />
                   <TextField fx:id="tfCategorie" layoutX="158.0" layoutY="103.0" promptText="Nom de categorie" />
                   <Separator layoutX="151.0" layoutY="74.0" prefWidth="200.0" />
                   <Label layoutX="61.0" layoutY="39.0" text="Rentrer le nom d'une categorie pour afficher le site web" textAlignment="CENTER" />
+                  <Button fx:id="aide_web" layoutX="307.0" layoutY="288.0" mnemonicParsing="false" onAction="#aide_handle" text="Aide" />
                </children></AnchorPane>
         </content>
       </Tab>
@@ -46,7 +48,8 @@
                   <Label layoutX="195.0" layoutY="39.0" text="Verifier question" />
                   <Separator layoutX="150.0" layoutY="71.0" prefWidth="200.0" />
                   <TextField fx:id="tfQuestion" layoutX="157.0" layoutY="98.0" promptText="Question" />
-                  <Button fx:id="btVerifier" layoutX="344.0" layoutY="284.0" mnemonicParsing="false" onAction="#handlerbtVerifier" text="Verifier" />
+                  <Button fx:id="btVerifier" layoutX="390.0" layoutY="284.0" mnemonicParsing="false" onAction="#handlerbtVerifier" text="Verifier" />
+                  <Button fx:id="aide_questions" layoutX="312.0" layoutY="284.0" mnemonicParsing="false" onAction="#aide_handle" text="Aide" />
                </children></AnchorPane>
       </content>
     </Tab>

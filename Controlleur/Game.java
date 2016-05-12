@@ -101,9 +101,9 @@ public class Game implements Initializable{
 		
 		
 	}
-	public void itemAidehandler(ActionEvent event){
-		
-		
+	public void itemAidehandler(ActionEvent event)
+    {
+		JOptionPane.showMessageDialog(null, JavaOverflow.aide_utilisateur());
 	}
 	public void fieldReponseHandler(ActionEvent event){
 		
