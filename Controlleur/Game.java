@@ -1,5 +1,6 @@
 package Controlleur;
 
+import Vue.*;
 import Controlleur.JavaOverflow;
 import java.awt.Desktop;
 import java.util.ResourceBundle;
@@ -24,7 +25,7 @@ import javax.swing.JOptionPane;
 public class Game implements Initializable{
 
 	@FXML TextField fieldReponse;
-	@FXML Button btConfirmer;
+	@FXML Button btConfirmer, retour;
 	@FXML TextArea textArea;
 	@FXML Menu menuFichier,menuEdition,menuAide;
 	@FXML MenuItem itemFermer,itemCopier,itemAide;
@@ -108,6 +109,49 @@ public class Game implements Initializable{
 	public void fieldReponseHandler(ActionEvent event){
 		
 		
+	}
+    public void handleReturn(ActionEvent event)
+    {
+        try
+        {
+            launchPane("/Vue/Accueil.fxml","JavaOverflow - Acceuil",1,600,400);
+        }
+        catch(Exception e)
+        {
+            e.printStackTrace();
+        }
+    }
+    
+    /**
+     * 
+     * @param ressourcePath
+     * @param paneTitle
+     * @param mode
+     * @param sizex
+     * @param sizey
+     * @throws IOException 
+     */
+	public void launchPane(String ressourcePath,String paneTitle,int mode,int sizex,int sizey) throws IOException
+	{
+		Stage currentStage = (Stage)retour.getScene().getWindow();
+		if(mode==1){
+			currentStage.hide();
+		}
+		
+		Parent root = FXMLLoader.load(getClass().getResource(ressourcePath));
+		
+		Scene scene = new Scene(root,sizex,sizey);
+		
+		
+		Stage gameStage = new Stage();
+		gameStage.setTitle(paneTitle);
+		gameStage.setScene(scene);
+		gameStage.show();
+		
+		gameStage.setOnCloseRequest(e ->{
+			e.consume();
+			JavaOverflow.closeProgram(gameStage);
+		});
 	}
 	/*public void textAreaHandler(ActionEvent event){
 		

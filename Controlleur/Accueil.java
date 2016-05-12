@@ -67,11 +67,6 @@ public class Accueil implements Initializable{
 	
 	public void handlerOptions(ActionEvent event)
 	{
-		/*Alert alert = new Alert(AlertType.WARNING);
-		alert.setTitle("JavaOverflow");
-		alert.setHeaderText("Attention");
-		alert.setContentText("Cette option n'est pas disponible dans cette version.");
-		alert.showAndWait(); */
 		try{
 			launchPane("/Vue/Option.fxml","JavaOverflow - Options",0,450,480);
 			
@@ -160,7 +155,16 @@ public class Accueil implements Initializable{
 		JavaOverflow.closeProgram((Stage)btQuitter.getScene().getWindow());
 	}
 	
-	void launchPane(String ressourcePath,String paneTitle,int mode,int sizex,int sizey) throws IOException
+    /**
+     * 
+     * @param ressourcePath
+     * @param paneTitle
+     * @param mode
+     * @param sizex
+     * @param sizey
+     * @throws IOException 
+     */
+	public void launchPane(String ressourcePath,String paneTitle,int mode,int sizex,int sizey) throws IOException
 	{
 		Stage currentStage = (Stage)btCommencer.getScene().getWindow();
 		if(mode==1){

@@ -17,6 +17,7 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import javax.swing.JOptionPane;
 import java.security.*;
+import java.util.regex.PatternSyntaxException;
 
 /**
  * Class JavaOverflow
@@ -242,9 +243,17 @@ public class JavaOverflow extends Application{
      */
 	public static boolean verifyFormatAnswer(String rep, String ans)
 	{
-        cwq.setDone(true);
-        cs.add(cwq.getDifficulty());
-		return rep.matches(ans);
+        try
+        {
+            cwq.setDone(true);
+            cs.add(cwq.getDifficulty());
+            return rep.matches(ans);
+        }
+        catch(PatternSyntaxException e)
+        {
+            JOptionPane.showMessageDialog(null, "il y a un probleme avec le regex, veuillez contacter l'adminstrateur");
+            return false;
+        }
 	}
 	
 	public static short categoryLevel(Category category)
@@ -317,6 +326,7 @@ public class JavaOverflow extends Application{
 				ObjectOutputStream oos = new ObjectOutputStream(fout);
                 oos.writeObject(save);
 				oos.close();
+                x++;
             }
             catch(Exception e)
             {
