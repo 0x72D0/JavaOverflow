@@ -42,8 +42,17 @@ public class Accueil implements Initializable{
 	
 	public void handlerCommencer(ActionEvent event) throws IOException
 	{
-        JavaOverflow.cs = new User();
-        launchPane("/Vue/Game.fxml","JavaOverflow",1,755,500);
+        TextInputDialog dialog = new TextInputDialog("");
+		dialog.setTitle("Mot de passe");
+		dialog.setHeaderText("Mot de passe requit pour continuer");
+		dialog.setContentText("Entrer votre mot de passe:");
+		Optional<String> result = dialog.showAndWait();
+		
+		if(result.isPresent())
+        {
+            JavaOverflow.setCs(result.get());
+            launchPane("/Vue/Game.fxml","JavaOverflow",1,755,500);
+        }
 	}
 	
 	public void handlerOptions(ActionEvent event)
