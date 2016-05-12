@@ -6,6 +6,7 @@ import java.util.Optional;
 import java.util.ResourceBundle;
 
 import Modele.Database;
+import java.awt.Dimension;
 
 import java.io.File;
 import java.io.FileInputStream;
@@ -28,11 +29,13 @@ import javafx.scene.control.Alert.AlertType;
 import javafx.scene.text.Text;
 import javafx.fxml.Initializable;
 import javax.swing.JOptionPane;
+import javax.swing.JScrollPane;
+import javax.swing.JTextArea;
 
 public class Administrateur implements Initializable{
 	
 	@FXML TextField tfPassword,tfConfirmer,tfCategorie,tfQuestion;
-	@FXML Button btAppliquerA,btAppliquerC,btVerifier;
+	@FXML Button btAppliquerA,btAppliquerC,btVerifier, aide_admin, aide_web, aide_questions;
 
 	@Override
 	public void  initialize(URL location, ResourceBundle resources){
@@ -50,6 +53,16 @@ public class Administrateur implements Initializable{
         {
             JOptionPane.showMessageDialog(null, "les mots de passe ne sont pas identique");
         }
+	}
+	
+	public void aide_handle(ActionEvent event)
+	{
+		JTextArea textArea = new JTextArea(JavaOverflow.aide_adminstrateur());
+        JScrollPane scrollPane = new JScrollPane(textArea);  
+        textArea.setLineWrap(true);  
+        textArea.setWrapStyleWord(true); 
+        scrollPane.setPreferredSize( new Dimension( 500, 500 ) );
+        JOptionPane.showMessageDialog(null, scrollPane, "dialog test with textarea", JOptionPane.PLAIN_MESSAGE);
 	}
 	//Bouton Categorie
 	public void handlerbtAppliquerC(ActionEvent event){
