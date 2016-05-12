@@ -42,16 +42,26 @@ public class Accueil implements Initializable{
 	
 	public void handlerCommencer(ActionEvent event) throws IOException
 	{
-        TextInputDialog dialog = new TextInputDialog("");
-		dialog.setTitle("Mot de passe");
-		dialog.setHeaderText("Mot de passe requit pour continuer");
-		dialog.setContentText("Entrer votre mot de passe:");
-		Optional<String> result = dialog.showAndWait();
-		
-		if(result.isPresent())
+        if(JavaOverflow.database.isPosessQuestions())
         {
-            JavaOverflow.setCs(result.get());
-            launchPane("/Vue/Game.fxml","JavaOverflow",1,755,500);
+            TextInputDialog dialog = new TextInputDialog("");
+            dialog.setTitle("Mot de passe");
+            dialog.setHeaderText("Mot de passe requit pour continuer");
+            dialog.setContentText("Entrer votre mot de passe:");
+            Optional<String> result = dialog.showAndWait();
+
+            if(result.isPresent())
+            {
+                JavaOverflow.setCs(result.get());
+                launchPane("/Vue/Game.fxml","JavaOverflow",1,755,500);
+            }
+        }
+        else
+        {
+            Alert alert = new Alert(AlertType.WARNING,"votre database ne possede pas de question");
+			alert.setTitle("JavaOverflow");
+			alert.setHeaderText("Attention");
+            alert.showAndWait();
         }
 	}
 	
@@ -72,25 +82,44 @@ public class Accueil implements Initializable{
 	}
 	
 	public void handleGenererQ(ActionEvent event)
-	{
+	{   
+        TextInputDialog dialog = new TextInputDialog("");
+		dialog.setTitle("Mot de passe");
+		dialog.setHeaderText("Mot de passe requit pour continuer");
+		dialog.setContentText("Entrer votre mot de passe:");
+		Optional<String> result = dialog.showAndWait();
 		
-		try
+		if(result.isPresent())
 		{
-			JavaOverflow.database = new Database();
-			Path currentRelativePath = Paths.get("");
-			File seri = new File(currentRelativePath.toAbsolutePath().toString()+File.separator+ "database.Jobj");
-			FileOutputStream fout = new FileOutputStream(seri);
-			ObjectOutputStream oos = new ObjectOutputStream(fout);
-			oos.writeObject(JavaOverflow.database);
-			oos.close();
-			
-			Alert alert = new Alert(AlertType.INFORMATION,"Operation Reussi");
-			alert.setHeaderText("Creation questions");
-			alert.showAndWait();
-		}
-		catch(Exception e)
-		{
-			e.printStackTrace();
+			if(result.get().equals(JavaOverflow.database.getPassword())){
+
+				
+				try 
+                {
+					JavaOverflow.database.generateDatabase();
+                    Path currentRelativePath = Paths.get("");
+                    File seri = new File(currentRelativePath.toAbsolutePath().toString()+File.separator+ "database.Jobj");
+                    FileOutputStream fout = new FileOutputStream(seri);
+                    ObjectOutputStream oos = new ObjectOutputStream(fout);
+                    oos.writeObject(JavaOverflow.database);
+                    oos.close();
+
+                    Alert alert = new Alert(AlertType.INFORMATION,"Operation Reussi");
+                    alert.setHeaderText("Creation questions");
+                    alert.showAndWait();
+				} 
+                catch (IOException e) 
+                {
+					e.printStackTrace();
+				}
+			}
+            else
+            {
+				Alert alert = new Alert(AlertType.WARNING,"Mot de passe incorrect!");
+				alert.setTitle("JavaOverflow");
+				alert.setHeaderText("Attention");
+				alert.showAndWait();
+			}
 		}
 	}
 	
