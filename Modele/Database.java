@@ -18,6 +18,7 @@ public class Database implements Serializable{
 	private ArrayList<Question> questions = new ArrayList<Question>();
 	private ArrayList<Category> category = new ArrayList<Category>();
     private short essaisAvantAide;
+    private boolean posessQuestions;
     private String password;
 	
 	/**
@@ -25,28 +26,9 @@ public class Database implements Serializable{
 	 */
 	public Database()
 	{
-		try
-		{
-            this.essaisAvantAide = 5;
-            createCategories();
-			createObject();
-            this.password = "admin";
-		}
-		catch (FileNotFoundException e) 
-		{
-			System.out.println("File not found exception when create the database\n\n");
-			e.printStackTrace();
-		}
-		catch(IOException e) 
-		{
-            System.out.println("IO exception when create the database\n\n");
-            e.printStackTrace();
-        }
-        catch(ArrayIndexOutOfBoundsException E)
-        {
-			JOptionPane.showMessageDialog(null,"Des erreurs de fichiers sont apparues en essayant de créer la base de données.");
-            System.exit(1);
-        }
+        this.essaisAvantAide = 5;
+        this.password = "admin";
+        this.posessQuestions = false;
 	}
 	
 	/**
@@ -157,6 +139,33 @@ public class Database implements Serializable{
         }
         
     }
+    
+    public void generateDatabase()
+    {
+        try
+		{
+            createCategories();
+			createObject();
+            this.posessQuestions = true;
+		}
+		catch (FileNotFoundException e) 
+		{
+			System.out.println("File not found exception when create the database\n\n");
+			e.printStackTrace();
+            System.exit(120);
+		}
+		catch(IOException e) 
+		{
+            System.out.println("IO exception when create the database\n\n");
+            e.printStackTrace();
+            System.exit(110);
+        }
+        catch(ArrayIndexOutOfBoundsException E)
+        {
+			JOptionPane.showMessageDialog(null,"Des erreurs de fichiers sont apparues en essayant de créer la base de données.");
+            System.exit(1);
+        }
+    }
 	
 	//getters&setters
     
@@ -211,6 +220,22 @@ public class Database implements Serializable{
     public void setCategory(ArrayList<Category> category) 
     {
         this.category = category;
+    }
+
+    /**
+     * 
+     * @return 
+     */
+    public boolean isPosessQuestions() {
+        return posessQuestions;
+    }
+
+    /**
+     * 
+     * @param posessQuestions 
+     */
+    public void setPosessQuestions(boolean posessQuestions) {
+        this.posessQuestions = posessQuestions;
     }
     
     /**

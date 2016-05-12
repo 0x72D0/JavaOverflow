@@ -271,6 +271,7 @@ public class JavaOverflow extends Application{
     
     public static void createEleves()
     {
+        
         Path currentRelativePath = Paths.get("");
         File dir = new File(currentRelativePath.toAbsolutePath().toString()+File.separator+ "User");
         File[] listeChemins = dir.listFiles();
@@ -304,6 +305,7 @@ public class JavaOverflow extends Application{
     public static void saveEleves()
     {
         Path currentRelativePath = Paths.get("");
+        new File(currentRelativePath.toAbsolutePath().toString() + File.separator + "User").mkdirs();
         File dir = new File(currentRelativePath.toAbsolutePath().toString() + File.separator + "User");
         int x = 0;
         for(User save : eleves)
@@ -440,10 +442,14 @@ public class JavaOverflow extends Application{
             createEleves();
 
 		}
+        catch(FileNotFoundException e)
+        {
+			database = new Database();
+		}
         catch(Exception e)
         {
-			e.printStackTrace();
-		}
+            e.printStackTrace();
+        }
 		
 		Parent root = FXMLLoader.load(getClass().getResource("/Vue/Accueil.fxml"));
 		
