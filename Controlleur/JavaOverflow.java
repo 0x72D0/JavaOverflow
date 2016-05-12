@@ -33,7 +33,7 @@ public class JavaOverflow extends Application{
 	public static Question cwq; // cwq : current working question
     public static short userProgress=1;
     public static boolean confirmClose = true;
-    public static ArrayList<User> eleves;
+    public static ArrayList<User> eleves = new ArrayList<User>();
     public static User cs;
     //
     // Constructors
@@ -478,6 +478,7 @@ public class JavaOverflow extends Application{
 					ObjectOutputStream oos = new ObjectOutputStream(fout);
 					oos.writeObject(JavaOverflow.database);
 					oos.close();
+                    saveEleves();
 				}
 				catch(Exception e)
 				{
@@ -496,6 +497,7 @@ public class JavaOverflow extends Application{
 					ObjectOutputStream oos = new ObjectOutputStream(fout);
 					oos.writeObject(JavaOverflow.database);
 					oos.close();
+                    saveEleves();
 				}
 				catch(Exception e)
 				{
