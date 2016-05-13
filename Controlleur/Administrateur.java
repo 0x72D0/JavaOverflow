@@ -35,7 +35,7 @@ import javax.swing.JTextArea;
 public class Administrateur implements Initializable{
 	
 	@FXML TextField tfPassword,tfConfirmer,tfCategorie,tfQuestion;
-	@FXML Button btAppliquerA,btAppliquerC,btVerifier, aide_admin, aide_web, aide_questions;
+	@FXML Button btAppliquerA,btAppliquerC,btVerifier, aide_admin, aide_web, aide_questions, quitter_admin, quitter_web, quitter_question;
 
 	@Override
 	public void  initialize(URL location, ResourceBundle resources){
@@ -47,7 +47,27 @@ public class Administrateur implements Initializable{
 	{
         if(tfPassword.getText().equals(tfConfirmer.getText()))
         {
-            JavaOverflow.adminPassword(tfPassword.getText());
+            if(tfPassword.getText().equals(""))
+            {
+                final Alert alert = new Alert(AlertType.WARNING);
+                alert.setTitle("mot de passe faible");
+                alert.setHeaderText("attention!!!");
+                alert.setContentText("etes-vous sur de vouloir une chaine de \ncaractere vide comme mot de passe?");
+
+                alert.getButtonTypes().clear();
+                alert.getButtonTypes().addAll(ButtonType.YES, ButtonType.NO);
+
+                final Optional<ButtonType> result = alert.showAndWait();
+                if(result.get() == ButtonType.YES)
+                {
+                    JavaOverflow.adminPassword(tfPassword.getText());
+                }
+            }
+            else
+            {
+                JavaOverflow.adminPassword(tfPassword.getText());
+            }
+            
         }
         else
         {
@@ -71,6 +91,12 @@ public class Administrateur implements Initializable{
 	public void handlerbtVerifier(ActionEvent event){
 		JavaOverflow.adminTryQuestionsPresence(tfQuestion.getText());
 	}
+    
+    public void handleExit(ActionEvent event)
+    {
+        Stage currentStage = (Stage)btVerifier.getScene().getWindow();
+        currentStage.hide();
+    }
 	
 	
 }
