@@ -24,7 +24,8 @@
                   <Button fx:id="btAppliquerA" layoutX="375.0" layoutY="294.0" mnemonicParsing="false" onAction="#handlerBtAppliquerA" text="Appliquer" />
                   <Separator layoutX="128.0" layoutY="64.0" prefWidth="200.0" />
                   <Label layoutX="154.0" layoutY="30.0" text="Changer mot de passe" />
-                  <Button fx:id="aide_admin" layoutX="290.0" layoutY="294.0" mnemonicParsing="false" onAction="#aide_handle" text="Aide" />
+                  <Button fx:id="aide_admin" layoutX="33.0" layoutY="294.0" mnemonicParsing="false" onAction="#aide_handle" text="Aide" />
+                  <Button fx:id="quitter_admin" layoutX="297.0" layoutY="294.0" mnemonicParsing="false" onAction="#handleExit" text="Quitter" />
                </children>
             </AnchorPane>
          </content>
@@ -37,7 +38,8 @@
                   <TextField fx:id="tfCategorie" layoutX="158.0" layoutY="103.0" promptText="Nom de categorie" />
                   <Separator layoutX="151.0" layoutY="74.0" prefWidth="200.0" />
                   <Label layoutX="61.0" layoutY="39.0" text="Rentrer le nom d'une categorie pour afficher le site web" textAlignment="CENTER" />
-                  <Button fx:id="aide_web" layoutX="307.0" layoutY="288.0" mnemonicParsing="false" onAction="#aide_handle" text="Aide" />
+                  <Button fx:id="aide_web" layoutX="38.0" layoutY="288.0" mnemonicParsing="false" onAction="#aide_handle" text="Aide" />
+                  <Button fx:id="quitter_web" layoutX="298.0" layoutY="288.0" mnemonicParsing="false" onAction="#handleExit" text="Quitter" />
                </children></AnchorPane>
         </content>
       </Tab>
@@ -49,7 +51,8 @@
                   <Separator layoutX="150.0" layoutY="71.0" prefWidth="200.0" />
                   <TextField fx:id="tfQuestion" layoutX="157.0" layoutY="98.0" promptText="Question" />
                   <Button fx:id="btVerifier" layoutX="390.0" layoutY="284.0" mnemonicParsing="false" onAction="#handlerbtVerifier" text="Verifier" />
-                  <Button fx:id="aide_questions" layoutX="312.0" layoutY="284.0" mnemonicParsing="false" onAction="#aide_handle" text="Aide" />
+                  <Button fx:id="aide_questions" layoutX="110.0" layoutY="284.0" mnemonicParsing="false" onAction="#aide_handle" text="Aide" />
+                  <Button fx:id="quitter_question" layoutX="297.0" layoutY="284.0" mnemonicParsing="false" onAction="#handleExit" text="Quitter" />
                </children></AnchorPane>
       </content>
     </Tab>

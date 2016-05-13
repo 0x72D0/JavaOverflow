@@ -10,6 +10,6 @@ package Vue;
  *
  * @author kts
  */
-public class bullshit {
+public class dummy {
     
 }
