@@ -37,8 +37,8 @@
       <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="10.0" BorderPane.alignment="CENTER">
          <children>
             <TextField fx:id="fieldReponse" onAction="#fieldReponseHandler" promptText="Reponse" />
-            <Button fx:id="retour" mnemonicParsing="false" onAction="#handleReturn" text="retour" />
-            <Button fx:id="btConfirmer" mnemonicParsing="false" onAction="#btConfirmerHandler" text="Confirmer" />
+            <Button fx:id="retour" cancelButton="true" mnemonicParsing="false" onAction="#handleReturn" text="retour" />
+            <Button fx:id="btConfirmer" defaultButton="true" mnemonicParsing="false" onAction="#btConfirmerHandler" text="Confirmer" />
          </children>
          <BorderPane.margin>
             <Insets />

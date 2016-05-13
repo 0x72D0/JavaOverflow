@@ -38,6 +38,8 @@ public class Database implements Serializable{
 	 */
 	private void createObject() throws IOException, FileNotFoundException, ArrayIndexOutOfBoundsException
 	{
+        questions = new ArrayList<Question>();
+        
 		String q = null;
 		String a = null;
 		//Cree le chemin des fichiers questions
@@ -96,6 +98,8 @@ public class Database implements Serializable{
     {
         try
         {
+            category = new ArrayList<Category>();
+            
             Path currentRelativePath = Paths.get(""); 
             File categoryFile = new File(currentRelativePath.toAbsolutePath().toString()+File.separator+ "category.txt");
 

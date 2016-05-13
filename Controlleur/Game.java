@@ -40,6 +40,7 @@ public class Game implements Initializable{
 		JavaOverflow.generateQuestion();
 		textArea.setText(JavaOverflow.cwq.getEnonce());
 		scoreLabel.setText("Score: "+JavaOverflow.cs.getPoints());
+        btConfirmer.setDefaultButton(true);
 	}
 	
 	public void setStage(Stage theStage)
