@@ -3,6 +3,7 @@ package Controlleur;
 import Vue.*;
 import Controlleur.JavaOverflow;
 import java.awt.Desktop;
+import java.awt.Dimension;
 import java.util.ResourceBundle;
 import java.io.IOException;
 import java.net.URI;
@@ -24,6 +25,8 @@ import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
 import javafx.fxml.Initializable;
 import javax.swing.JOptionPane;
+import javax.swing.JScrollPane;
+import javax.swing.JTextArea;
 
 public class Game implements Initializable{
 
@@ -70,53 +73,34 @@ public class Game implements Initializable{
 	{
 		this.currentStage = theStage;
 	}
-	
-	public void btConfirmerHandler(ActionEvent event) throws IOException{
-		
-		if(JavaOverflow.verifyStringAnswer(fieldReponse.getText())){
-			
-			Alert alert = new Alert(AlertType.INFORMATION);
-			alert.setTitle("JavaOverflow");
-			alert.setHeaderText("Bonne reponse.");
-			alert.setContentText("Bravo!");
-			alert.showAndWait();
-			
-			JavaOverflow.generateQuestion();
-			textArea.setText(JavaOverflow.cwq.getEnonce());
-			fieldReponse.setText("");
-			scoreLabel.setText("Score: "+JavaOverflow.cs.getPoints());
-			
-		}else
-		{
-                        JavaOverflow.cs.setNbreEssaiRate((short)(JavaOverflow.cs.getNbreEssaiRate()+1));
-			if(JavaOverflow.cs.getNbreEssaiRate()==JavaOverflow.database.getEssaisAvantAide())
-                        {
-                            try
-                            {
-                            	if(Desktop.isDesktopSupported())
-            			{
-                			Desktop.getDesktop().browse(new URI(JavaOverflow.cwq.getCategory().getRessource()));
-            		        }
-                            }
-                catch(URISyntaxException e)
-			    {
-			    	JOptionPane.showMessageDialog(null, "nous n'avons pas trouver l'URI");
-			    }
-                        }
-                        Alert alert = new Alert(AlertType.INFORMATION);
-			alert.setTitle("JavaOverflow");
-			alert.setHeaderText("Mauvaise reponse.");
-			alert.setContentText("Essaye encore.");
-			alert.showAndWait();
+	/**
+     *  gere le bouton confirmer.
+     * @param event
+     * @throws IOException 
+     */
+	public void btConfirmerHandler(ActionEvent event) throws IOException
+    {
+		try 
+        {
+            confirmerReponse();
+		} 
+        catch (IOException e)
+        {	
+            e.printStackTrace();
 		}
-		
 	}
+    
 	public void btSuivantHandler(ActionEvent event){
 		
 		JavaOverflow.generateQuestion();
 		textArea.setText(JavaOverflow.cwq.getEnonce());
 		
 	}
+    
+    /**
+     * gere l'option fermer
+     * @param event 
+     */
 	public void itemFermerHandler(ActionEvent event){
 		
 		JavaOverflow.closeProgram((Stage)borderPane.getScene().getWindow());
@@ -126,6 +110,10 @@ public class Game implements Initializable{
 		
 		
 	}
+    /**
+     * gere l'option aide.
+     * @param event 
+     */
 	public void itemAidehandler(ActionEvent event)
     {
 		JOptionPane.showMessageDialog(null, JavaOverflow.aide_utilisateur());
@@ -134,6 +122,10 @@ public class Game implements Initializable{
 		
 		
 	}
+    /**
+     * gere le bouton retour.
+     * @param event 
+     */
     public void handleReturn(ActionEvent event)
     {
         try
@@ -145,42 +137,52 @@ public class Game implements Initializable{
             e.printStackTrace();
         }
     }
+    
+    /**
+     * gere la confirmation de reponse.
+     * @throws IOException 
+     */
     public void confirmerReponse() throws IOException{
 		if(JavaOverflow.verifyStringAnswer(fieldReponse.getText())){
 			
-			Alert alert = new Alert(AlertType.INFORMATION);
-			alert.setTitle("JavaOverflow");
-			alert.setHeaderText("Bonne reponse.");
-			alert.setContentText("Bravo!");
-			alert.showAndWait();
+		JTextArea text = new JTextArea(JavaOverflow.cwq.getBonFeedBack());
+        JScrollPane scrollPane = new JScrollPane(text);  
+        text.setLineWrap(true);  
+        text.setWrapStyleWord(true); 
+        scrollPane.setPreferredSize( new Dimension( 500, 500 ) );
+        JOptionPane.showMessageDialog(null, scrollPane, "bonne reponse!", JOptionPane.PLAIN_MESSAGE);
 			
 			JavaOverflow.generateQuestion();
 			textArea.setText(JavaOverflow.cwq.getEnonce());
 			fieldReponse.setText("");
 			scoreLabel.setText("Score: "+JavaOverflow.cs.getPoints());
 			
-		}else
+		}
+        else
 		{
-                        JavaOverflow.cs.setNbreEssaiRate((short)(JavaOverflow.cs.getNbreEssaiRate()+1));
+            JavaOverflow.cs.setNbreEssaiRate((short)(JavaOverflow.cs.getNbreEssaiRate()+1));
 			if(JavaOverflow.cs.getNbreEssaiRate()==JavaOverflow.database.getEssaisAvantAide())
-                        {
-                            try
-                            {
-                            	if(Desktop.isDesktopSupported())
-            			{
-                			Desktop.getDesktop().browse(new URI(JavaOverflow.cwq.getCategory().getRessource()));
-            		        }
-                            }
+            {
+                try
+                {
+                    if(Desktop.isDesktopSupported())
+            		{
+                        Desktop.getDesktop().browse(new URI(JavaOverflow.cwq.getCategory().getRessource()));
+            		}
+                }
                 catch(URISyntaxException e)
-			    {
-			    	JOptionPane.showMessageDialog(null, "nous n'avons pas trouver l'URI");
-			    }
-                        }
-                        Alert alert = new Alert(AlertType.INFORMATION);
-			alert.setTitle("JavaOverflow");
-			alert.setHeaderText("Mauvaise reponse.");
-			alert.setContentText("Essaye encore.");
-			alert.showAndWait();
+                {
+                    JOptionPane.showMessageDialog(null, "echec de l'URI");
+                }
+            }
+            
+            JTextArea textArea = new JTextArea(JavaOverflow.cwq.getMauvaisFeedBack());
+            JScrollPane scrollPane = new JScrollPane(textArea);  
+            textArea.setLineWrap(true);  
+            textArea.setWrapStyleWord(true); 
+            scrollPane.setPreferredSize( new Dimension( 500, 500 ) );
+            JOptionPane.showMessageDialog(null, scrollPane, "mauvaise reponse!", JOptionPane.PLAIN_MESSAGE);
+                        
 		}
 		
 	}
