@@ -74,7 +74,10 @@ public class Administrateur implements Initializable{
             JOptionPane.showMessageDialog(null, "les mots de passe ne sont pas identique");
         }
 	}
-	
+	/**
+     * gere les evenement du bouton aide.
+     * @param event 
+     */
 	public void aide_handle(ActionEvent event)
 	{
 		JTextArea textArea = new JTextArea(JavaOverflow.aide_adminstrateur());
@@ -82,16 +85,23 @@ public class Administrateur implements Initializable{
         textArea.setLineWrap(true);  
         textArea.setWrapStyleWord(true); 
         scrollPane.setPreferredSize( new Dimension( 500, 500 ) );
-        JOptionPane.showMessageDialog(null, scrollPane, "dialog test with textarea", JOptionPane.PLAIN_MESSAGE);
+        JOptionPane.showMessageDialog(null, scrollPane, "aide", JOptionPane.PLAIN_MESSAGE);
 	}
 	//Bouton Categorie
 	public void handlerbtAppliquerC(ActionEvent event){
 		JavaOverflow.adminTryWebsite(tfCategorie.getText());	
 	}
+    /**
+     * bouton pour verifier la presence des questions
+     * @param event 
+     */
 	public void handlerbtVerifier(ActionEvent event){
 		JavaOverflow.adminTryQuestionsPresence(tfQuestion.getText());
 	}
-    
+    /**
+     * gere les boutons pour quitter
+     * @param event 
+     */
     public void handleExit(ActionEvent event)
     {
         Stage currentStage = (Stage)btVerifier.getScene().getWindow();

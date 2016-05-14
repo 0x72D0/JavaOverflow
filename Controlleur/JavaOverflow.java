@@ -73,7 +73,7 @@ public class JavaOverflow extends Application{
         Random rand = new Random();
         int i = rand.nextInt(database.getQuestions().size());
         if(allDone)
-            System.out.println("Toutes les questions ont étées réussies");
+            JOptionPane.showMessageDialog(null, "Toutes les questions ont étées réussies");
         else
         {
 			if(database.getQuestions().get(i).getCategory().getAvgDiff()==userProgress)
@@ -89,11 +89,19 @@ public class JavaOverflow extends Application{
         }
 	}
     
+    /**
+     * met la chaine de caractere envoyer en tant que nouveau password
+     * @param password nouveau password
+     */
     public static void adminPassword(String password)
     {
         database.setPassword(password);
     }
     
+    /**
+     * verifie si la question est entrer dans la database et l'affiche dans un JOptionPane
+     * @param fileName nom de la question 
+     */
     public static void adminTryQuestionsPresence(String fileName)
     {
         try
@@ -119,7 +127,7 @@ public class JavaOverflow extends Application{
     
     /**
      * allow the admin to check if the website is good 
-     * @param category 
+     * @param category categorie a tester
      */
     public static void adminTryWebsite(String category)
     {
@@ -216,17 +224,14 @@ public class JavaOverflow extends Application{
 		// et ici answer represente les reponse attendu par le programme
 		
 		rep = formatString(rep);
-		System.out.println(rep);
 		
 		for(String ans : cwq.getReponses())
 		{
 			ans = formatString(ans);
-			System.out.println(ans);
 			if(rep.equals(ans))
 			{
 				cwq.setDone(true);
                 cs.add(cwq.getDifficulty());
-                System.out.println("vous avez " + cs.getPoints()+"points");
 				return true;
 			}
 		}
@@ -278,6 +283,9 @@ public class JavaOverflow extends Application{
         return 100;
     }
     
+    /**
+     * importe les utilisateur dans le programme
+     */
     public static void createEleves()
     {
         
@@ -311,6 +319,9 @@ public class JavaOverflow extends Application{
         }
     }
     
+    /**
+     * sauvegarde des utilisateurs dans le programme
+     */
     public static void saveEleves()
     {
         Path currentRelativePath = Paths.get("");
@@ -335,6 +346,10 @@ public class JavaOverflow extends Application{
         }
     }
     
+    /**
+     * prends le mot de passe et met l'utilisateur avec se password comme utilisateur principal.
+     * @param userMdp 
+     */
     public static void setCs(String userMdp)
     {
         for(User save : eleves)
@@ -358,6 +373,11 @@ public class JavaOverflow extends Application{
     // Other methods
     //
     
+    /**
+     * trouve la question a partir du nom du fichier
+     * @param fileName le nom du fichier rechercher
+     * @return la Question
+     */
     public static Question findQuestionFile(String fileName)
     {
         for(Question q : database.getQuestions())
@@ -371,6 +391,10 @@ public class JavaOverflow extends Application{
         return null;
     }
     
+    /**
+     * retourne en String le contenu du fichier aide.txt
+     * @return le contenu du fichier
+     */
     public static String aide_utilisateur()
     {
         try
@@ -402,6 +426,10 @@ public class JavaOverflow extends Application{
         return null;
     }
     
+    /**
+     * retourne en String le contenu de aide_admin.txt
+     * @return le contenu de aide_admin.txt
+     */
     public static String aide_adminstrateur()
     {
         try
@@ -433,11 +461,20 @@ public class JavaOverflow extends Application{
         return null;
     }
 
+    /**
+     * le main
+     * @param args 
+     */
     public static void main(String[]args)
     {			
 		launch(args); //Lance JavaFx
     }
     
+    /**
+     * le main de JavaFx
+     * @param primaryStage
+     * @throws Exception 
+     */
 	public void start(Stage primaryStage) throws Exception {
         
         try
@@ -476,6 +513,10 @@ public class JavaOverflow extends Application{
 		
 	}
 	
+    /**
+     * routine quand on ferme le programme.
+     * @param theStage 
+     */
 	public static void closeProgram(Stage theStage){
         if(confirmClose)
         {

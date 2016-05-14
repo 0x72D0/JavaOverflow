@@ -15,8 +15,8 @@ import java.util.Arrays;
 
 public class Database implements Serializable{
 
-	private ArrayList<Question> questions = new ArrayList<Question>();
-	private ArrayList<Category> category = new ArrayList<Category>();
+	private ArrayList<Question> questions;
+	private ArrayList<Category> category;
     private short essaisAvantAide;
     private boolean posessQuestions;
     private String password;
@@ -93,7 +93,9 @@ public class Database implements Serializable{
 		}
 	}
     
-    
+    /**
+     * cree les categories dans le programme
+     */
     public void createCategories()
     {
         try
@@ -116,7 +118,7 @@ public class Database implements Serializable{
             
             String buf = new String(buffer);
             String[] cat = buf.split("\\r?\\n");
-            System.out.println(cat.length-1);
+            System.out.println(cat.length);
             
             for(int i = 0; i < (cat.length); i++)
             {
@@ -144,6 +146,9 @@ public class Database implements Serializable{
         
     }
     
+    /**
+     * genere la database
+     */
     public void generateDatabase()
     {
         try
@@ -207,11 +212,19 @@ public class Database implements Serializable{
         this.essaisAvantAide = essaisAvantAide;
     }
 
+    /**
+     * 
+     * @return password 
+     */
     public String getPassword() 
     {
         return password;
     }
 
+    /**
+     * 
+     * @param password le password
+     */
     public void setPassword(String password) 
     {
         this.password = password;
@@ -278,7 +291,7 @@ public class Database implements Serializable{
             Category found = new Category();
             int c = 0;
 
-            for(Category s:category)
+            for(Category s : category)
             {
                 if(s.getName().equals(catbuf))
                 {
@@ -288,7 +301,7 @@ public class Database implements Serializable{
                 c++;
             }
 
-            if(c == category.size())
+            if(c >= category.size())
             {
                JOptionPane.showMessageDialog(null, "la categorie que vous avez mis dans le fichier n'existe pas dans le fichier Category.txt");
                throw new Exception();

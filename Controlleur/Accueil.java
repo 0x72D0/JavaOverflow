@@ -39,7 +39,11 @@ public class Accueil implements Initializable{
 		
 	}
 	
-	
+	/**
+     * gere les evenement du bouton commencer
+     * @param event
+     * @throws IOException 
+     */
 	public void handlerCommencer(ActionEvent event) throws IOException
 	{
         if(JavaOverflow.database.isPosessQuestions())
@@ -65,6 +69,10 @@ public class Accueil implements Initializable{
         }
 	}
 	
+    /**
+     * gere les evenements du bouton option
+     * @param event 
+     */
 	public void handlerOptions(ActionEvent event)
 	{
 		try{
@@ -76,6 +84,10 @@ public class Accueil implements Initializable{
 		
 	}
 	
+    /**
+     * gere les evenements du bouton generer Questions
+     * @param event 
+     */
 	public void handleGenererQ(ActionEvent event)
 	{   
         TextInputDialog dialog = new TextInputDialog("");
@@ -118,7 +130,10 @@ public class Accueil implements Initializable{
 		}
 	}
 	
-	
+	/**
+     * gere le bouton administrateur
+     * @param event 
+     */
 	public void handlerAdministrateur(ActionEvent event)
 	{
 		TextInputDialog dialog = new TextInputDialog("");
@@ -149,14 +164,17 @@ public class Accueil implements Initializable{
 		
 	}
 	
-	
+	/**
+     * gere le bouton quitter
+     * @param event 
+     */
 	public void handlerQuitter(ActionEvent event)
 	{
 		JavaOverflow.closeProgram((Stage)btQuitter.getScene().getWindow());
 	}
 	
     /**
-     * 
+     * permet de lancer une fenetre rapidement.
      * @param ressourcePath
      * @param paneTitle
      * @param mode
