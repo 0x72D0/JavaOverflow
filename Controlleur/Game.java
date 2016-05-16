@@ -27,7 +27,10 @@ import javafx.fxml.Initializable;
 import javax.swing.JOptionPane;
 import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
-
+/**
+ * classe qui gere les evenements de la fenetre du questionnaire.
+ * @author Giovanni
+ */
 public class Game implements Initializable{
 
 	@FXML TextField fieldReponse;

@@ -8,7 +8,7 @@ package Modele;
 import java.io.Serializable;
 
 /**
- *
+ * garde les informations en memoire.
  * @author Lucas Mongrain, 2016/04/10
  */
 public class Category implements Serializable

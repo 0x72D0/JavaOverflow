@@ -8,10 +8,9 @@ package Modele;
 import java.io.Serializable;
 
 /**
- *
+ * garde en memoire les informations sur les utilisateurs.
  * @author waldo
  */
-
 public class User implements Serializable{
     private short points;
     private Category difficulty;

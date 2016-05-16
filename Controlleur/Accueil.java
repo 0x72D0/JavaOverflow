@@ -27,7 +27,10 @@ import javafx.event.ActionEvent;
 import javafx.scene.control.*;
 import javafx.scene.control.Alert.AlertType;
 import javafx.fxml.Initializable;
-
+/**
+ * gere les evenements de la fenetre d'acceuil.
+ * @author Giovanni
+ */
 public class Accueil implements Initializable{
 	
 	@FXML Button btCommencer,btOptions,btGenererQ,btQuitter,btAdministrateur;

@@ -27,7 +27,10 @@ import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.fxml.Initializable;
 
-
+/**
+ * classe qui gere les evenements de la fenetre option.
+ * @author Giovanni
+ */
 public class Options implements Initializable{
 
 	@FXML Button btDefaut,btOk,btCancel,btAppliquer;

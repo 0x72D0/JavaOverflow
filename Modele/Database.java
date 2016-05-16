@@ -1,10 +1,4 @@
 package Modele;
-/**
- * Cette classe crée un database dans un ArrayList pour poser les questions et prendre les réponses
- * 
- * @author: Duy, 2016/02/16
- */
-//Modifications par Gio 2016/03/5
 
 import javax.swing.*;
 import java.io.*;
@@ -12,7 +6,12 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.Arrays;
-
+/**
+ * Cette classe crée un database dans un ArrayList pour poser les questions et prendre les réponses
+ * 
+ * @author: Duy, 2016/02/16
+ */
+//Modifications par Gio 2016/03/5
 public class Database implements Serializable{
 
 	private ArrayList<Question> questions;

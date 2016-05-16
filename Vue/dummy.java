@@ -7,7 +7,7 @@ package Vue;
  */
 
 /**
- *
+ * classe qui est presente que pour permettre une bonne compilation du programme
  * @author kts
  */
 public class dummy {

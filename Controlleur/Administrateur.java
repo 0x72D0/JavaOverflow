@@ -31,7 +31,10 @@ import javafx.fxml.Initializable;
 import javax.swing.JOptionPane;
 import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
-
+/**
+ * classe qui gere les evenements de la fenetre administrateur.
+ * @author Giovanni
+ */
 public class Administrateur implements Initializable{
 	
 	@FXML TextField tfPassword,tfConfirmer,tfCategorie,tfQuestion;
