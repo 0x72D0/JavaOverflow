@@ -12,7 +12,9 @@ import javafx.scene.control.Alert.AlertType;
 import java.util.*;
 import java.io.*;
 import java.awt.Desktop;
+import java.lang.reflect.Field;
 import java.net.*;
+import java.nio.charset.Charset;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import javax.swing.JOptionPane;
@@ -466,7 +468,18 @@ public class JavaOverflow extends Application{
      * @param args 
      */
     public static void main(String[]args)
-    {			
+    {	
+        try
+        {
+            System.setProperty("file.encoding","UTF-8");
+            Field charset = Charset.class.getDeclaredField("defaultCharset");
+            charset.setAccessible(true);
+            charset.set(null,null);
+        }
+        catch(Exception e)
+        {
+            JOptionPane.showMessageDialog(null, "votre ordinateur ne supporte pas utf-8");
+        }
 		launch(args); //Lance JavaFx
     }
     
